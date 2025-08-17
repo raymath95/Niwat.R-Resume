@@ -1,1053 +1,256 @@
-<html lang="th"><head>
+<!DOCTYPE html>
+<html lang="th">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="เว็บเรซูเม่ 2025 สมบูรณ์แบบด้วยเทคโนโลยี 3D, รองรับหลายภาษา, แสดง Radar Chart และ PWA">
+  <meta name="description" content="เว็บเรซูเม่ 2025 ของ นิวัฒน์ รัตนะ ในธีม Natural Tech">
+  <meta name="theme-color" content="#1c1c1c">
   <title>Resume 2025 | นิวัฒน์ รัตนะ</title>
-  <link rel="manifest" href="manifest.json">
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  
+  <link rel="manifest" href="">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <style>
-    /* Global Reset & Responsive Image */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    :root {
-      --primary-bg: #121212;
-      --page-bg: #1e1e1e;
-      --portfolio-bg: #2a2a2a; /* สำหรับแฟ้มผลงาน */
-      --experience-bg: #2a2a2a; /* สำหรับหน้าประสบการณ์ */
-      --menu-bg: rgba(0, 0, 0, 0.7);
-      --highlight-color: #ffeb3b;
-      --gradient-border: linear-gradient(90deg, #6a11cb, #2575fc);
-      --transition-duration: 0.3s;
-      --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
-      --text-color: #ffffff;
-      --text-color-secondary: #cccccc;
-      --border-color: #444444;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--primary-bg);
-      color: var(--text-color);
-      font-family: 'Roboto', sans-serif;
-      font-size: 21px;
-      overflow-x: hidden;
-      perspective: 1200px;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      min-height: 100vh;
-      padding-top: 80px;
-      background: var(--primary-bg);
-      margin: 0 auto;
-      perspective: 1200px; /* เพิ่มความลึก */
-    }
-
-    .folder-menu {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 1rem;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .folder-menu button {
-      background: var(--menu-bg);
-      border: 2px solid transparent;
-      border-image: var(--gradient-border) 1;
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 6px;
-      color: var(--text-color);
-      transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .folder-menu button:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
-    }
-
-    .folder-menu button:active::after {
-      width: 200%;
-      height: 200%;
-      opacity: 0;
-      transition: 0s;
-    }
-
-    .btn-personal { background: #2f4f2f; }
-    .btn-experience { background: #333300; }
-    .btn-portfolio { background: #4d4d4d; }
-    .btn-skills { background: #666600; }
-    .btn-contact { background: #003366; }
-
-    .folder-page {
-      width: 90%;
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: var(--page-bg);
-      border: 5px solid;
-      border-image: var(--gradient-border) 1;
-      border-radius: 8px;
-      position: absolute;
-      left: 50%;
-      top: 120px;
-      transform: translateX(-50%) rotateY(90deg) translateZ(-100px);
-      opacity: 0;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      backface-visibility: hidden;
-      transform-style: preserve-3d; /* เก็บรักษา 3D Transformation */
-      transition: transform 0.5s, opacity 0.5s;
-    }
-
-    .folder-page.active {
-      transform: translateX(0) rotateY(0deg) translateZ(0);
-      opacity: 1;
-      position: relative;
-      left: auto;
-    }
-
-    .folder-page:not(.active) {
-      transform: rotateY(90deg); /* สลับหน้าไปยังมุมที่ซ่อน */
-      opacity: 0;
-    }
-
-    .folder-page.active {
-      transform: rotateY(0); /* แสดงหน้า */
-      opacity: 1;
-    }
-
-    .folder-page h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-    }
-
-    .profile-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .profile-image {
-      width: 120px;
-      height: 120px;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 12px rgba(0, 255, 0, 0.7);
-    }
-
-    /* Zoom เมื่อ Hover สำหรับภาพโปรไฟล์ */
-    .profile-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .profile-image img:hover {
-      transform: scale(1.2);
-    }
-
+    *, *::before, *::after { box-sizing: border-box; }
+    img { max-width: 100%; height: auto; }
+    :root { --primary-bg: #121212; --page-bg: #1c1c1c; --portfolio-bg: #2a2a2a; --experience-bg: #2a2a2a; --menu-bg: rgba(0, 0, 0, 0.7); --highlight-color: #66bb6a; --gradient-border: linear-gradient(90deg, #1A4314, #4CAF50); --transition-duration: 0.3s; --transition-timing: cubic-bezier(0.4, 0, 0.2, 1); --text-color: #ffffff; --text-color-secondary: #cccccc; --border-color: #444444; }
+    html, body { margin: 0; padding: 0; background: var(--primary-bg); color: var(--text-color); font-family: 'Roboto', sans-serif; font-size: 21px; overflow-x: hidden; perspective: 1200px; }
+    #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--primary-bg); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.75s ease, visibility 0.75s ease; }
+    #preloader.hidden { opacity: 0; visibility: hidden; }
+    .loader-icon { width: 60px; height: 60px; border: 5px solid var(--border-color); border-top-color: var(--highlight-color); border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .container { width: 100%; max-width: 1200px; min-height: 100vh; padding-top: 80px; margin: 0 auto; }
+    .folder-menu { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1rem; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(18, 18, 18, 0.85); backdrop-filter: blur(6px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
+    .folder-menu button { background: var(--menu-bg); border: 2px solid transparent; border-image: var(--gradient-border) 1; padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; border-radius: 6px; color: var(--text-color); transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease; position: relative; overflow: hidden; }
+    .folder-menu button:hover { transform: scale(1.08); box-shadow: 0 0 12px rgba(102, 187, 106, 0.8); }
+    .folder-page { width: 90%; max-width: 800px; margin: 2rem auto; padding: 1.5rem; background: var(--page-bg); border: 5px solid; border-image: var(--gradient-border) 1; border-radius: 8px; position: absolute; left: 50%; top: 120px; transform: translateX(-50%) rotateY(90deg) translateZ(-100px); opacity: 0; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1); backface-visibility: hidden; transform-style: preserve-3d; }
+    .folder-page.active { transform: translateX(-50%) rotateY(0deg) translateZ(0); opacity: 1; position: relative; left: 50%; }
+    .folder-page h2 { text-align: center; margin-bottom: 2rem; text-shadow: 0 0 10px rgba(102, 187, 106, 0.5); }
+    .profile-container { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; margin-bottom: 2rem; }
+    .quote { margin-top: 1rem; font-style: italic; text-align: center; color: var(--text-color-secondary); min-height: 1.2em; }
+    .quote::after { content: '▋'; animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .experience-container { position: relative; padding: 2rem 0; display: block; }
+    .experience-container::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 100%; background-color: var(--border-color); }
+    .experience-card { padding: 1.5rem; position: relative; width: calc(50% - 2rem); margin-bottom: 2rem; background: var(--experience-bg); border-radius: 8px; transform-style: preserve-3d; transition: transform 0.5s var(--transition-timing), box-shadow 0.5s var(--transition-timing), opacity 0.6s ease-out; will-change: transform, opacity; }
+    .experience-card:hover { transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) scale(1.05); box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5); }
+    .experience-card::after { content: ''; position: absolute; top: 1.5rem; width: 16px; height: 16px; border-radius: 50%; background-color: var(--page-bg); border: 4px solid var(--highlight-color); z-index: 1; }
+    .experience-container .experience-card:nth-child(odd) { left: 0; }
+    .experience-container .experience-card:nth-child(even) { left: 50%; }
+    .experience-container .experience-card:nth-child(odd)::after { right: -2rem; transform: translateX(50%); }
+    .experience-container .experience-card:nth-child(even)::after { left: -2rem; transform: translateX(-50%); }
+    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+    .lang-switcher button { background: #333; border: 1px solid var(--border-color); color: var(--text-color); padding: 0.3rem 0.6rem; font-size: 0.8rem; cursor: pointer; border-radius: 4px; margin-left: 5px; }
+    .lang-switcher button.active { background: var(--highlight-color); color: #000; }
+    .profile-image { width: 120px; height: 120px; border-radius: 8px; overflow: hidden; cursor: pointer; box-shadow: 0 0 15px rgba(102, 187, 106, 0.6); }
+    .profile-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+    .profile-image:hover img { transform: scale(1.2); }
     .profile-info { flex: 1; }
-    .personal-table { margin-top: 0.5rem; }
-    .personal-table table { border-collapse: collapse; }
-
-    .personal-table td {
-      padding: 0.2rem 0.5rem;
-      vertical-align: top;
-    }
-
-    .personal-table td:first-child { color: var(--text-color-secondary); }
-    .quote {
-      margin-top: 1rem;
-      font-style: italic;
-      text-align: center;
-      color: var(--text-color-secondary);
-    }
-
     .qr-code { margin-top: 1rem; text-align: center; }
-    .qr-code img {
-      width: 150px;
-      height: 150px;
-      object-fit: contain;
-      background: #fff;
-      padding: 10px;
-      border-radius: 8px;
-    }
+    .qr-code img { width: 150px; height: 150px; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px; }
 
-    /* ปรับปรุงสไตล์สำหรับหน้าแฟ้มผลงาน */
-    .portfolio-category {
-      background: var(--portfolio-bg);
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-    }
+    /* --- FINALIZED PORTFOLIO CARD STYLES --- */
+    .portfolio-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .filter-btn { background: var(--portfolio-bg); border: 1px solid var(--border-color); color: var(--text-color-secondary); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; }
+    .filter-btn:hover { background: #444; color: var(--text-color); }
+    .filter-btn.active { background: var(--highlight-color); color: #000; font-weight: bold; border-color: var(--highlight-color); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .portfolio-item { background: var(--portfolio-bg); border-radius: 12px; overflow: hidden; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transform-style: preserve-3d; transition: transform 0.5s var(--transition-timing), box-shadow 0.5s var(--transition-timing); will-change: transform; }
+    .portfolio-item:hover { transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) scale(1.05); box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5); }
+    .portfolio-image { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+    .portfolio-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .portfolio-item:hover .portfolio-image img { transform: scale(1.1); }
+    .portfolio-image::after { content: '\f00e'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: #fff; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; opacity: 0; transition: opacity 0.4s ease; }
+    .portfolio-item:hover .portfolio-image::after { opacity: 1; }
+    .portfolio-info { padding: 1rem; text-align: center; }
+    .portfolio-info h4 { color: var(--highlight-color); margin-top: 0; margin-bottom: 0.5rem; font-size: 1.2rem; }
+    .portfolio-info p { font-size: 0.9rem; color: var(--text-color-secondary); margin: 0 0 1rem 0; }
+    .portfolio-tags { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { background-color: rgba(0,0,0,0.4); color: #ddd; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); }
+    .portfolio-item.hidden { display: none; }
 
-    .portfolio-category h3 {
-      margin-bottom: 1rem;
-      color: var(--highlight-color);
-      font-size: 1.5rem;
-      text-align: center;
-    }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .portfolio-item {
-      background: var(--portfolio-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .portfolio-item:hover {
-      box-shadow: 0 4px 15px rgba(37, 117, 252, 0.4);
-    }
-
-    .portfolio-image {
-      height: 200px;
-      overflow: hidden;
-      border-radius: 8px;
-      position: relative;
-    }
-
-    .portfolio-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .portfolio-info {
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .portfolio-info h4 {
-      margin: 0.5rem 0;
-      font-size: 1.2em;
-      color: var(--highlight-color);
-      text-align: center;
-    }
-
-    .portfolio-info p {
-      font-size: 0.9em;
-      margin: 0;
-      color: var(--text-color-secondary);
-      line-height: 1.4;
-      text-align: center;
-    }
-
-    /* ปรับปรุงสไตล์สำหรับหน้าประสบการณ์ */
-    .experience-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      padding: 1rem;
-    }
-
-    .experience-card {
-      background: var(--experience-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1.2rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-      min-height: 150px;
-      justify-content: space-between;
-      padding: 1rem;
-    }
-
-    .experience-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--gradient-border);
-    }
-
-    .experience-card h3 {
-      margin: 0 0 0.8rem 0;
-      font-size: 1.2rem;
-      color: var(--highlight-color);
-      padding-left: 0.8rem;
-    }
-
-    .experience-card p {
-      margin: 0;
-      padding-left: 0.8rem;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--text-color);
-    }
-
-    .experience-card:hover {
-      box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
-    }
-
-    /* Radar Chart และส่วนอื่น ๆ */
-    .skills-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .skills-category {
-      background: var(--page-bg);
-      padding: 0.75rem;
-      border-radius: 4px;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-      border: 1px solid var(--border-color);
-    }
-
-    .skills-category h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.1rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 0.3rem;
-    }
-
-    .skills-category ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .skills-category li {
-      padding: 0.25rem 0;
-      font-size: 0.95rem;
-    }
-
-    .radar-chart-container {
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 1rem;
-      background: var(--page-bg);
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(37, 117, 252, 0.3);
-      transition: all 0.3s ease;
-      border: 1px solid var(--border-color);
-    }
-
-    .radar-chart-container:hover {
-      box-shadow: 0 0 20px rgba(37, 117, 252, 0.5);
-      transform: translateY(-2px);
-    }
-
-    .modal {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: fixed;
-      z-index: 200;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 1rem;
-    }
-
-    .modal-content {
-      background: #111;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 90%;
-      max-height: 90%;
-      animation: fadeIn 0.5s;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    }
-
-    .modal-content img {
-      width: 100%;
-      height: auto;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
+    .skills-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+    .skills-category { background: var(--page-bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); }
+    .skills-category h3 { margin: 0 0 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+    .skills-category ul { list-style: none; padding: 0; margin: 0; }
+    .skills-category li { padding: 0.25rem 0; }
+    .modal { display: none; align-items: center; justify-content: center; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(4px); }
+    .modal-content { background: #1e1e1e; border-radius: 8px; max-width: 600px; width: 90%; animation: fadeIn 0.5s; box-shadow: 0 0 20px rgba(0,0,0,0.5); display: flex; flex-direction: column; overflow: hidden; position: relative; border: 1px solid var(--border-color); }
+    .modal-close { position: absolute; top: 10px; right: 20px; font-size: 2rem; cursor: pointer; color: #fff; z-index: 10; }
+    .modal-content img { width: 100%; height: auto; max-height: 250px; object-fit: cover; }
+    .modal-body { padding: 1.5rem; overflow-y: auto; text-align: center; }
+    .modal-body h3 { color: var(--highlight-color); margin-top: 0; }
+    .modal-footer { text-align: center; padding: 1.5rem; background: #2a2a2a; border-top: 1px solid var(--border-color); }
+    .btn-primary { background-image: var(--gradient-border); border: none; color: white; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 25px; font-weight: bold; transition: transform 0.3s ease, box-shadow 0.3s ease; display: inline-block; }
+    .btn-primary:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); }
+    .social-links { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
+    .social-link { padding: 0.8rem 1.5rem; border-radius: 25px; text-decoration: none; color: var(--text-color); font-weight: 500; transition: all 0.3s ease; }
+    .social-link.facebook { background: #333; } .social-link.facebook:hover { background: #1A4314; transform: scale(1.05); }
+    .social-link.line { background: #333; } .social-link.line:hover { background: #4CAF50; transform: scale(1.05); }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     @media (max-width: 768px) {
-      html, body {
-        font-size: 14px;
-      }
-      .folder-menu {
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 0.3rem;
-      }
-      .folder-menu button {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
-      }
-      .folder-page {
-        width: 95%;
-        padding: 0.8rem;
-        margin: 1rem auto;
-      }
-      .profile-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .profile-image {
-        width: 100px;
-        height: 100px;
-      }
-      .skills-container {
-        grid-template-columns: 1fr;
-      }
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-      .experience-container {
-        grid-template-columns: 1fr;
-      }
-      .social-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .folder-menu button {
-        font-size: 0.95rem;
-      }
-      .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .experience-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .skills-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* ปรับปรุง hover effect ที่นุ่มนวลขึ้น */
-    .portfolio-item, 
-    .experience-card, 
-    .skills-category, 
-    .contact-info, 
-    .social-link {
-      transform: translateY(0);
-      transition: all var(--transition-duration) var(--transition-timing);
-      will-change: transform;
-    }
-
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid var(--menu-bg);
-      border-top: 5px solid var(--highlight-color);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .contact-info {
-      background: var(--page-bg);
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      border: 1px solid var(--border-color);
-    }
-
-    .contact-info p {
-      margin: 0.8rem 0;
-      font-size: 1.1rem;
-    }
-
-    .contact-link {
-      color: var(--text-color);
-      text-decoration: none;
-      transition: color 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .contact-link:hover {
-      color: #2575fc;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
-      text-decoration: none;
-      color: var(--text-color);
-      font-weight: 500;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .social-link:hover {
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    .social-link.facebook {
-      background: #1877f2;
-    }
-
-    .social-link.line {
-      background: #00B900;
-    }
-
-    .contact-info i {
-      font-size: 1.2rem;
-      width: 24px;
-      text-align: center;
+        .experience-container::before { left: 20px; }
+        .experience-card { width: calc(100% - 40px); left: 40px !important; }
+        .experience-card::after { left: -20px !important; transform: translateX(-50%); }
+        .profile-container { flex-direction: column; align-items: center; text-align: center; }
+        .skills-container { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
+  <div id="preloader"><div class="loader-icon"></div></div>
+  
   <div class="container">
-    <div class="folder-menu">
-      <button class="btn-personal" data-target="page-personal">ข้อมูลส่วนตัว</button>
-      <button class="btn-experience" data-target="page-experience">ประสบการณ์</button>
-      <button class="btn-portfolio" data-target="page-portfolio">แฟ้มผลงาน</button>
-      <button class="btn-skills" data-target="page-skills">ทักษะ &amp; เครื่องมือ</button>
-      <button class="btn-contact" data-target="page-contact">ติดต่อ</button>
-    </div>
+    <nav class="folder-menu">
+      <button data-target="page-personal" id="btn-personal"></button>
+      <button data-target="page-experience" id="btn-experience"></button>
+      <button data-target="page-portfolio" id="btn-portfolio"></button>
+      <button data-target="page-skills" id="btn-skills"></button>
+      <button data-target="page-contact" id="btn-contact"></button>
+      <div class="lang-switcher">
+          <button id="lang-th" onclick="switchLanguage('th')" class="active">TH</button>
+          <button id="lang-en" onclick="switchLanguage('en')">EN</button>
+      </div>
+    </nav>
 
-    <div id="page-personal" class="folder-page active">
-      <h2>ข้อมูลส่วนตัว</h2>
-      <div class="profile-container">
-        <div class="profile-image">
-          <img src="https://i.postimg.cc/zXfR05pT/250421155-NX1s-Y.jpg" alt="Profile Image" loading="lazy">
-        </div>
-        <div class="profile-info">
-          <div class="personal-table">
-            <table>
-              <tbody>
-                <tr><td>ชื่อ</td><td>: นิวัฒน์ รัตนะ</td></tr>
-                <tr><td>วันเกิด</td><td>: 06/09/1994</td></tr>
-                <tr><td>อายุ</td><td id="ageValue">: 30 ปี</td></tr>
-                <tr><td>ส่วนสูง</td><td>: 179 ซม.</td></tr>
-                <tr><td>น้ำหนัก</td><td>: 95 กก.</td></tr>
-                <tr><td>กรุ๊ปเลือด</td><td>: A</td></tr>
-                <tr><td>ที่อยู่</td><td>: อ.ปลายพระยา จ.กระบี่</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="quote">“Do what you like, Then life be happy”</div>
-          <div class="qr-code">
-            <img src="https://i.postimg.cc/xTpLSBhL/61215.jpg" alt="QR Code" loading="lazy" onerror="this.onerror=null; this.src='placeholder.jpg';">
+    <main>
+      <div id="page-personal" class="folder-page active">
+        <h2 id="personal-title" class="animate-on-scroll"></h2>
+        <div class="profile-container animate-on-scroll">
+          <div class="profile-image"><img src="https://i.postimg.cc/zXfR05pT/250421155-NX1s-Y.jpg" alt="Profile Image" loading="lazy"></div>
+          <div class="profile-info">
+            <table><tbody>
+              <tr><td id="name-label"></td><td id="name-value">: นิวัฒน์ รัตนะ</td></tr>
+              <tr><td id="birth-label"></td><td>: 06/09/1994</td></tr>
+              <tr><td id="age-label"></td><td id="ageValue"></td></tr>
+              <tr><td id="height-label"></td><td>: 179 ซม.</td></tr>
+              <tr><td id="weight-label"></td><td>: 95 กก.</td></tr>
+              <tr><td id="blood-label"></td><td>: A</td></tr>
+              <tr><td id="address-label"></td><td>: อ.ปลายพระยา จ.กระบี่</td></tr>
+            </tbody></table>
+            <div class="quote" id="quote"></div>
+            <div class="qr-code"><img src="https://i.postimg.cc/xTpLSBhL/61215.jpg" alt="QR Code" loading="lazy"></div>
           </div>
         </div>
-      </div>
-      <div>
-        <h2>การศึกษา</h2>
-        <ul>
-          <h3><li><strong>2554:</strong> Major Science - Math</li></h3>
-          <p><strong>สถาบัน:</strong> Bhadungsi Pittaya School</p>
-          <h3><li><strong>2559:</strong> Multimedia Technology</li></h3>
-          <p><strong>สถาบัน:</strong> Rajamangala University of Technology Suvarnabhumi</p>
-        </ul>
-      </div>
-      <div>
-        <h2>ความสนใจ</h2>
-        <ul>
-          <tbody><tr><tb><li>การถ่ายภาพ/ถ่ายวีดีโอ</li></tb></tr>
-          <tr><tb><li>การเดินทางรถยนตร์</li></tb></tr>
-          <tr><tb><li>การอ่านมังงะ</li></tb></tr>
-          <tr><tb><li>เทคโนโลยีใหม่</li></tb></tr>
-          <tr><tb><li>ว่ายน้ำ</li></tb></tr></tbody>
-        </ul>
-      </div>
-    </div>
-
-    <div id="page-experience" class="folder-page">
-      <h2>ประสบการณ์</h2>
-      <div class="experience-container">
-        <div class="experience-card">
-          <h3>2566 - 2567</h3>
-          <p><strong>ร้านเงินทรัพรุ่งเรืองเฟอร์นิเจอร์</strong><br>
-          ตำแหน่ง: พนักงานขาย</p>
-        </div>
-
-        <div class="experience-card">
-          <h3>2564 - 2565</h3>
-          <p><strong>ธุรกิจส่วนตัว</strong><br>
-          ทำสวนปาล์ม / ทุเรียน</p>
-        </div>
-
-        <div class="experience-card">
-          <h3>2563-2564</h3>
-          <p><strong>บริษัทไอติมเอสต้า</strong><br>
-          ตำแหน่ง: Graphics Designer<br>
-          หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอสินค้า,<br>
-          ทำโมชั่นกราฟฟิค, จัดระบบควบคุมไลฟ์สด</p>
-        </div>
-
-        <div class="experience-card">
-          <h3>2562-2563</h3>
-          <p><strong>บริษัทโป้ปี่เป้งอัน</strong><br>
-          ตำแหน่ง: Graphics Designer<br>
-          หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอ,<br>
-          ทำโมชั่นกราฟฟิค</p>
-        </div>
-
-        <div class="experience-card">
-          <h3>2561-2562</h3>
-          <p><strong>บริษัทมิซูชูเกียจ</strong><br>
-          ตำแหน่ง: Graphics Designer<br>
-          หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอ,<br>
-          ทำโมชั่นกราฟฟิค</p>
-        </div>
-
-        <div class="experience-card">
-          <h3>2560</h3>
-          <p><strong>วิทยาลัยวีแบค</strong><br>
-          ตำแหน่ง: ครูผู้สอนคอมพิวเตอร์กราฟิก<br>
-          หน้าที่: สอนคอมพิวเตอร์กราฟฟิคระดับ ปวช.</p>
-        </div>
-
-        <div class="experience-card">
-          <h3>2559</h3>
-          <p><strong>หจก.ฟันนี่ดี</strong><br>
-          ตำแหน่ง: 3D Modeler<br>
-          หน้าที่: ขึ้นแบบโมเดล 3 มิติ เครื่องออกกำลังกายกลางแจ้ง</p>
-        </div>
-      </div>
-    </div>
-
-    <div id="page-portfolio" class="folder-page">
-      <h2>แฟ้มผลงาน</h2>
-      <div id="portfolioContainer" class="portfolio-grid">
-        <!-- Portfolio categories will be dynamically inserted here -->
-      </div>
-    </div>
-
-    <div id="page-skills" class="folder-page">
-      <h2>ทักษะ &amp; เครื่องมือ</h2>
-      <div class="skills-container">
-        <div class="skills-category">
-          <h3>Software &amp; Tools</h3>
+        <div class="animate-on-scroll">
+          <h2 id="education-title"></h2>
           <ul>
-            <li>Adobe Illustrator (Ai)</li>
-            <li>Photoshop (Ps)</li>
-            <li>canva</li>
-            <li>After Effects (Ae)</li>
-            <li>Premiere Pro</li>
-            <li>OBS (Open Broadcaster Software)</li>
-            <li>Vmix</li>
+            <h3 id="edu1-title"></h3><p><strong id="institute-label1"></strong> <span id="edu1-school"></span></p>
+            <h3 id="edu2-title"></h3><p><strong id="institute-label2"></strong> <span id="edu2-school"></span></p>
           </ul>
         </div>
-        <div class="skills-category">
-          <h3>Hardware / OS</h3>
-          <ul>
-            <li>Windows</li>
-            <li>MacOS</li>
-          </ul>
-        </div>
-        <div class="skills-category">
-          <h3>Other Skills</h3>
-          <ul>
-            <li>3D Modeling</li>
-            <li>Graphic Design</li>
-            <li>ถ่ายภาพ/ตัดต่อวีดีโอ</li>
-            <li>Live Control</li>
-          </ul>
+        <div class="animate-on-scroll">
+          <h2 id="interests-title"></h2>
+          <ul id="interests-list"></ul>
         </div>
       </div>
-      <div class="radar-chart-container">
-        <canvas id="radarChart" width="288" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 288px;"></canvas>
-      </div>
-    </div>
 
-    <div id="page-contact" class="folder-page">
-      <h2>ติดต่อ</h2>
-      <div class="contact-info">
-        <p>
-          <strong>ชื่อ:</strong> นิวัฒน์ รัตนะ (Niwat R.)
-        </p>
-        <p>
-          <strong>อีเมล:</strong>
-          <a href="mailto:joratna@hotmail.com" class="contact-link">
-            <i class="fas fa-envelope"></i> joratna@hotmail.com
-          </a>
-        </p>
-        <p>
-          <strong>โทร:</strong>
-          <a href="tel:0886092297" class="contact-link">
-            <i class="fas fa-phone"></i> 088-609-2297
-          </a>
-        </p>
-        <p>
-          <strong>Line ID:</strong>
-          <a href="https://line.me/ti/p/~niwatjo" class="contact-link" target="_blank">
-            <i class="fab fa-line"></i> niwatjo
-          </a>
-        </p>
-        <p>คุณสามารถติดต่อได้ทุกวันจันทร์ - ศุกร์ เวลา 09.00 - 17.00 น.</p>
+      <div id="page-experience" class="folder-page">
+        <h2 id="experience-title" class="animate-on-scroll"></h2>
+        <div class="experience-container" id="experience-container"></div>
+      </div>
+      
+      <div id="page-portfolio" class="folder-page">
+        <h2 id="portfolio-title" class="animate-on-scroll"></h2>
+        <div class="portfolio-filters animate-on-scroll">
+          <button class="filter-btn active" data-filter="all" id="filter-all"></button>
+          <button class="filter-btn" data-filter="digital-design" id="filter-graphic"></button>
+          <button class="filter-btn" data-filter="editing" id="filter-video"></button>
+          <button class="filter-btn" data-filter="3d-projects" id="filter-3d"></button>
+        </div>
+        <div id="portfolioContainer" class="portfolio-grid"></div>
       </div>
 
-      <div class="social-links">
-        <a href="https://www.facebook.com/niwatjo.rattanajo" target="_blank" rel="noopener" class="social-link facebook">
-          <i class="fab fa-facebook"></i> Facebook
-        </a>
-        <a href="https://line.me/ti/p/~niwatjo" target="_blank" rel="noopener" class="social-link line">
-          <i class="fab fa-line"></i> Line
-        </a>
+      <div id="page-skills" class="folder-page">
+        <h2 id="skills-title" class="animate-on-scroll"></h2>
+        <div class="skills-container">
+          <div class="skills-category animate-on-scroll">
+            <h3 id="skills-cat1-title"></h3>
+            <ul id="skills-cat1-list"></ul>
+          </div>
+          <div class="skills-category animate-on-scroll">
+            <h3 id="skills-cat2-title"></h3>
+            <ul id="skills-cat2-list"></ul>
+          </div>
+          <div class="skills-category animate-on-scroll">
+            <h3 id="skills-cat3-title"></h3>
+            <ul id="skills-cat3-list"></ul>
+          </div>
+        </div>
+        <div class="radar-chart-container animate-on-scroll"><canvas id="radarChart"></canvas></div>
       </div>
-    </div>
+      
+      <div id="page-contact" class="folder-page">
+        <h2 id="contact-title" class="animate-on-scroll"></h2>
+        <div class="contact-info animate-on-scroll">
+          <p><strong id="contact-name-label"></strong> <span id="contact-name-value"></span></p>
+          <p><strong>อีเมล:</strong> <a href="mailto:joratna@hotmail.com" class="contact-link"><i class="fas fa-envelope"></i> joratna@hotmail.com</a></p>
+          <p><strong id="contact-tel-label"></strong> <a href="tel:0886092297" class="contact-link"><i class="fas fa-phone"></i> 088-609-2297</a></p>
+          <p><strong>Line ID:</strong> <a href="https://line.me/ti/p/~niwatjo" class="contact-link" target="_blank"><i class="fab fa-line"></i> niwatjo</a></p>
+          <p id="contact-availability"></p>
+        </div>
+        <div class="social-links animate-on-scroll">
+          <a href="https://www.facebook.com/niwatjo.rattanajo" target="_blank" rel="noopener" class="social-link facebook"><i class="fab fa-facebook"></i> Facebook</a>
+          <a href="https://line.me/ti/p/~niwatjo" target="_blank" rel="noopener" class="social-link line"><i class="fab fa-line"></i> Line</a>
+        </div>
+      </div>
+    </main>
   </div>
 
-  <div id="modal" class="modal" style="display: none;">
+  <div id="modal" class="modal">
     <div class="modal-content">
       <span class="modal-close">×</span>
-      <img id="modalImage" src="https://i.postimg.cc/zXfR05pT/250421155-NX1s-Y.jpg" alt="Profile Image" loading="lazy">
+      <img id="modalImage" src="" alt="Portfolio Image" loading="lazy">
+      <div class="modal-body">
+          <h3 id="modalTitle"></h3>
+          <p id="modalDescription"></p>
+          <div id="modalTags" class="portfolio-tags"></div>
+      </div>
+      <div class="modal-footer">
+          <a id="modalLink" href="#" target="_blank" rel="noopener" class="btn-primary" data-lang-key="view-project-btn"></a>
+      </div>
     </div>
   </div>
 
-  <!-- เพิ่มไฟล์เสียงหรือลบส่วนนี้ออก -->
-  <audio id="transitionSound" src="sound.mp3" preload="none"></audio>
+  <audio id="transitionSound" preload="none"><source src="data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZw==" type="audio/mpeg"></audio>
 
   <script>
-    // Service Worker Registration
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(registration => {
-            console.log('Service Worker registered with scope:', registration.scope);
-          })
-          .catch(error => {
-            console.error('Service Worker registration failed:', error);
-          });
-      });
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const langData = { 'th': {'btn-personal':'ข้อมูลส่วนตัว','btn-experience':'ประสบการณ์','btn-portfolio':'แฟ้มผลงาน','btn-skills':'ทักษะ & เครื่องมือ','btn-contact':'ติดต่อ','personal-title':'ข้อมูลส่วนตัว','name-label':'ชื่อ','birth-label':'วันเกิด','age-label':'อายุ','height-label':'ส่วนสูง','weight-label':'น้ำหนัก','blood-label':'กรุ๊ปเลือด','address-label':'ที่อยู่','quote':'“Do what you like, Then life be happy”','education-title':'การศึกษา','edu1-title':'2554: Major Science - Math','institute-label1':'สถาบัน:','edu1-school':'Bhadungsi Pittaya School','edu2-title':'2559: Multimedia Technology','institute-label2':'สถาบัน:','edu2-school':'Rajamangala University of Technology Suvarnabhumi','interests-title':'ความสนใจ','interests-list':'<li>การถ่ายภาพ/ถ่ายวีดีโอ</li><li>การเดินทางรถยนตร์</li><li>การอ่านมังงะ</li><li>เทคโนโลยีใหม่</li><li>ว่ายน้ำ</li>','experience-title':'ประสบการณ์','exp1-title':'ร้านเงินทรัพรุ่งเรืองเฟอร์นิเจอร์','exp1-pos':'ตำแหน่ง: พนักงานขาย','exp2-title':'ธุรกิจส่วนตัว','exp2-pos':'ทำสวนปาล์ม / ทุเรียน','exp3-title':'บริษัทไอติมเอสต้า','exp3-pos':'ตำแหน่ง: Graphics Designer','exp3-duty':'หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอสินค้า, ทำโมชั่นกราฟฟิค, จัดระบบควบคุมไลฟ์สด','exp4-title':'บริษัทโป้ปี่เป้งอัน','exp4-pos':'ตำแหน่ง: Graphics Designer','exp4-duty':'หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอ, ทำโมชั่นกราฟฟิค','exp5-title':'บริษัทมิซูชูเกียจ','exp5-pos':'ตำแหน่ง: Graphics Designer','exp5-duty':'หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอ, ทำโมชั่นกราฟฟิค','exp6-title':'วิทยาลัยวีแบค','exp6-pos':'ตำแหน่ง: ครูผู้สอนคอมพิวเตอร์กราฟิก','exp6-duty':'หน้าที่: สอนคอมพิวเตอร์กราฟฟิคระดับ ปวช.','exp7-title':'หจก.ฟันนี่ดี','exp7-pos':'ตำแหน่ง: 3D Modeler','exp7-duty':'หน้าที่: ขึ้นแบบโมเดล 3 มิติ เครื่องออกกำลังกายกลางแจ้ง','portfolio-title':'แฟ้มผลงาน','filter-all':'ทั้งหมด','filter-graphic':'Graphic Design','filter-video':'Video & Motion','filter-3d':'3D Projects','view-project-btn':'ดูโปรเจกต์เต็ม','view-details-cta':'ดูรายละเอียด','skills-title':'ทักษะ & เครื่องมือ','skills-cat1-title':'Software & Tools','skills-cat1-list':'<li>Adobe Illustrator (Ai)</li><li>Photoshop (Ps)</li><li>canva</li><li>After Effects (Ae)</li><li>Premiere Pro</li><li>OBS</li><li>Vmix</li>','skills-cat2-title':'Hardware / OS','skills-cat2-list':'<li>Windows</li><li>MacOS</li>','skills-cat3-title':'Other Skills','skills-cat3-list':'<li>3D Modeling</li><li>Graphic Design</li><li>ถ่ายภาพ/ตัดต่อวีดีโอ</li><li>Live Control</li>','contact-title':'ติดต่อ','contact-name-label':'ชื่อ:','contact-name-value':'นิวัฒน์ รัตนะ (Niwat R.)','contact-tel-label':'โทร:','contact-availability':'คุณสามารถติดต่อได้ทุกวันจันทร์ - ศุกร์ เวลา 09.00 - 17.00 น.','radar-label':'ระดับความชำนาญ (%)', 'age-unit': 'ปี'}, 'en': {'btn-personal':'Personal','btn-experience':'Experience','btn-portfolio':'Portfolio','btn-skills':'Skills & Tools','btn-contact':'Contact','personal-title':'Personal Info','name-label':'Name','birth-label':'Birthday','age-label':'Age','height-label':'Height','weight-label':'Weight','blood-label':'Blood Type','address-label':'Address','quote':'“Do what you like, Then life be happy”','education-title':'Education','edu1-title':'2011: Major Science - Math','institute-label1':'Institute:','edu1-school':'Bhadungsi Pittaya School','edu2-title':'2016: Multimedia Technology','institute-label2':'Institute:','edu2-school':'Rajamangala University of Technology Suvarnabhumi','interests-title':'Interests','interests-list':'<li>Photography/Videography</li><li>Road Trips</li><li>Reading Manga</li><li>New Technology</li><li>Swimming</li>','experience-title':'Experience','exp1-title':'Ngernsup Rungrueang Furniture','exp1-pos':'Position: Salesperson','exp2-title':'Private Business','exp2-pos':'Palm & Durian Farming','exp3-title':'Esta Ice Cream Co.','exp3-pos':'Position: Graphics Designer','exp3-duty':'Duties: Product graphic design, video editing, motion graphics, live stream control','exp4-title':'Popeepeng-un Co.','exp4-pos':'Position: Graphics Designer','exp4-duty':'Duties: Product graphic design, video editing, motion graphics','exp5-title':'Mizuchukiat Co.','exp5-pos':'Position: Graphics Designer','exp5-duty':'Duties: Product graphic design, video editing, motion graphics','exp6-title':'V-Bac College','exp6-pos':'Position: Computer Graphics Teacher','exp6-duty':'Duties: Taught computer graphics for vocational level','exp7-title':'Funny D Ltd. Part.','exp7-pos':'Position: 3D Modeler','exp7-duty':'Duties: 3D modeling of outdoor fitness equipment','portfolio-title':'Portfolio','filter-all':'All','filter-graphic':'Graphic Design','filter-video':'Video & Motion','filter-3d':'3D Projects','view-project-btn':'View Full Project','view-details-cta':'View Details','skills-title':'Skills & Tools','skills-cat1-title':'Software & Tools','skills-cat1-list':'<li>Adobe Illustrator (Ai)</li><li>Photoshop (Ps)</li><li>Canva</li><li>After Effects (Ae)</li><li>Premiere Pro</li><li>OBS</li><li>Vmix</li>','skills-cat2-title':'Hardware / OS','skills-cat2-list':'<li>Windows</li><li>MacOS</li>','skills-cat3-title':'Other Skills','skills-cat3-list':'<li>3D Modeling</li><li>Graphic Design</li><li>Photography/Videography</li><li>Live Control</li>','contact-title':'Contact','contact-name-label':'Name:','contact-name-value':'Niwat Rattana (Niwat R.)','contact-tel-label':'Tel:','contact-availability':'Available Mon - Fri, 09:00 - 17:00.','radar-label':'Proficiency Level (%)', 'age-unit': 'years old'} };
+      const portfolioData = { "digital-design": { name: "Graphic Design Portfolio", imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg", tags: ["Illustrator", "Photoshop", "Canva"], url: "https://sites.google.com/view/worksposter", lang: { th: { description: "ผลงานออกแบบกราฟิก, โปสเตอร์, และสื่อดิจิทัล" }, en: { description: "Graphic designs, posters, and digital media works." }}}, "editing": { name: "Video & Motion", imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg", tags: ["Premiere Pro", "After Effects"], url: "https://sites.google.com/view/editier", lang: { th: { description: "งานตัดต่อวิดีโอและโมชั่นกราฟิก" }, en: { description: "Video editing and motion graphics projects." }}}, "3d-projects": { name: "3D Modeling Works", imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg", tags: ["3D Modeling"], url: "https://sites.google.com/view/3dmodeles", lang: { th: { description: "ผลงานการออกแบบโมเดล 3 มิติ" }, en: { description: "Collection of 3D modeling works." }}} };
+      const experienceData = [ { year: '2566 - 2567', key: 'exp1' }, { year: '2564 - 2565', key: 'exp2' }, { year: '2563-2564', key: 'exp3' }, { year: '2562-2563', key: 'exp4' }, { year: '2561-2562', key: 'exp5' }, { year: '2560', key: 'exp6' }, { year: '2559', key: 'exp7' } ];
 
-    // Navigation และเสียง Transition
-    const buttons = document.querySelectorAll('.folder-menu button');
-    const pages = document.querySelectorAll('.folder-page');
-    const transitionSound = document.getElementById('transitionSound');
+      function calculateAge() { const birthDate = new Date(1994, 9 - 1, 6); let age = new Date().getFullYear() - birthDate.getFullYear(); const m = new Date().getMonth() - birthDate.getMonth(); if (m < 0 || (m === 0 && new Date().getDate() < birthDate.getDate())) { age--; } return age; }
+      function renderExperience(lang) { const container = document.getElementById('experience-container'); container.innerHTML = experienceData.map(exp => `<div class="experience-card animate-on-scroll"><h3>${exp.year}</h3><p><strong>${langData[lang][exp.key + '-title']}</strong><br>${langData[lang][exp.key + '-pos']}<br>${langData[lang][exp.key + '-duty'] || ''}</p></div>`).join(''); }
+      function typeWriter(element, text, speed = 50) { let i = 0; element.textContent = ""; function typing() { if (i < text.length) { element.textContent += text.charAt(i); i++; setTimeout(typing, speed); } } typing(); }
+      window.switchLanguage = function(lang) { document.documentElement.lang = lang; for (const key in langData[lang]) { const element = document.getElementById(key); if (element) { if (key.includes('-list')) element.innerHTML = langData[lang][key]; else element.textContent = langData[lang][key]; } } const age = calculateAge(); document.getElementById('ageValue').textContent = `: ${age} ${langData[lang]['age-unit']}`; document.getElementById('lang-th').classList.toggle('active', lang === 'th'); document.getElementById('lang-en').classList.toggle('active', lang === 'en'); const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all'; displayPortfolio(activeFilter, lang); renderExperience(lang); if (window.radarChart) { window.radarChart.data.datasets[0].label = langData[lang]['radar-label']; window.radarChart.update(); } const quoteEl = document.getElementById('quote'); if(quoteEl) typeWriter(quoteEl, langData[lang]['quote']); document.querySelectorAll('.animate-on-scroll').forEach(el => el.classList.remove('is-visible')); setTimeout(setupScrollAnimations, 100); }
+      function displayPortfolio(filter = 'all', lang = 'th') { const container = document.getElementById('portfolioContainer'); container.innerHTML = ''; Object.keys(portfolioData).forEach(key => { if (filter === 'all' || key === filter) { const item = portfolioData[key]; const div = document.createElement('div'); div.className = 'portfolio-item animate-on-scroll'; div.setAttribute('data-key', key); div.innerHTML = `<div class="portfolio-image"><img src="${item.imageUrl}" alt="${item.name}" loading="lazy"></div><div class="portfolio-info"><h4>${item.name}</h4><p>${item.lang[lang].description}</p><div class="portfolio-tags">${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div></div>`; container.appendChild(div); } }); addPortfolioClickListeners(); setupScrollAnimations(); }
+      function addPortfolioClickListeners() { document.querySelectorAll('.portfolio-item').forEach(item => { item.addEventListener('click', () => { const projectData = portfolioData[item.getAttribute('data-key')]; const currentLang = document.documentElement.lang || 'th'; const modal = document.getElementById('modal'); modal.querySelector('#modalImage').src = projectData.imageUrl; modal.querySelector('.modal-body').style.display = 'block'; modal.querySelector('.modal-footer').style.display = 'block'; modal.querySelector('#modalTitle').textContent = projectData.name; modal.querySelector('#modalDescription').textContent = projectData.lang[currentLang].description; modal.querySelector('#modalTags').innerHTML = projectData.tags.map(tag => `<span class="tag">${tag}</span>`).join(''); modal.querySelector('#modalLink').href = projectData.url; modal.querySelector('[data-lang-key="view-project-btn"]').textContent = langData[currentLang]['view-project-btn']; modal.style.display = 'flex'; }); }); }
+      function setupPortfolioFilters() { document.querySelectorAll('.filter-btn').forEach(button => { button.addEventListener('click', () => { document.querySelector('.filter-btn.active').classList.remove('active'); button.classList.add('active'); displayPortfolio(button.getAttribute('data-filter'), document.documentElement.lang || 'th'); }); }); }
+      function setupScrollAnimations() { const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 }); document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el)); }
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        transitionSound.play();
-        gtag('event', 'page_view', { event_category: 'Navigation', event_label: button.textContent });
-        const targetId = button.getAttribute('data-target');
+      const pages = document.querySelectorAll('.folder-page'); document.querySelectorAll('.folder-menu button[data-target]').forEach(button => { button.addEventListener('click', () => { document.getElementById('transitionSound').play().catch(()=>{}); pages.forEach(page => page.classList.toggle('active', page.id === button.getAttribute('data-target'))); setTimeout(setupScrollAnimations, 500); }); });
+      const ctx = document.getElementById('radarChart').getContext('2d'); window.radarChart = new Chart(ctx, { type: 'radar', data: { labels: ['Illustrator', 'Photoshop', 'Canva', 'After Effects', 'Premiere Pro', '3D Modeling', 'OBS', 'Vmix'], datasets: [{ label: ' ', data: [55, 40, 55, 55, 55, 30, 60, 35], backgroundColor: 'rgba(102, 187, 106, 0.2)', borderColor: '#66bb6a', borderWidth: 2, pointBackgroundColor: '#66bb6a', pointBorderColor: '#fff' }] }, options: { responsive: true, maintainAspectRatio: true, scales: { r: { beginAtZero: true, max: 100, ticks: { display: false }, grid: { color: 'rgba(255, 255, 255, 0.1)' }, angleLines: { color: 'rgba(255, 255, 255, 0.2)' }, pointLabels: { color: '#fff' } } }, plugins: { legend: { labels: { color: '#fff' } } } } });
+      const modal = document.getElementById('modal'); document.querySelector('.modal-close').addEventListener('click', () => modal.style.display = 'none'); modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; }); document.querySelector('.profile-image').addEventListener('click', () => { const profileModal = document.getElementById('modal'); profileModal.querySelector('#modalImage').src = document.querySelector('.profile-image img').src; profileModal.querySelector('.modal-body').style.display = 'none'; profileModal.querySelector('.modal-footer').style.display = 'none'; profileModal.style.display = 'flex'; });
+      
+      const preloader = document.getElementById('preloader');
+      window.addEventListener('load', () => { preloader.classList.add('hidden'); });
 
-        pages.forEach(page => {
-          page.id === targetId ? page.classList.add('active') : page.classList.remove('active');
-        });
-      });
-    });
-
-    // คำนวณอายุจากวันเกิด
-    (function(){
-      const birthDateString = "06/09/1994";
-      const today = new Date();
-      const [day, month, year] = birthDateString.split('/').map(Number);
-      const birthDate = new Date(year, month - 1, day);
-      let age = today.getFullYear() - birthDate.getFullYear();
-
-      if (today.getMonth() < birthDate.getMonth() ||
-         (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
-
-      document.getElementById('ageValue').textContent = `: ${age} ปี`;
-    })();
-
-    // ข้อมูลแฟ้มผลงาน (Portfolio Data)
-    const portfolioData = {
-      "Digital Design": [
-        {
-          name: "Graphic Design Portfolio",
-          imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg",
-          description: "ผลงานออกแบบกราฟิก, โปสเตอร์, และสื่อดิจิทัล",
-          url: "https://sites.google.com/view/worksposter"
-        }
-      ],
-      "Editing": [
-        {
-          name: "Video & Motion",
-          imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg",
-          description: "งานตัดต่อวิดีโอและโมชั่นกราฟิก",
-          url: "https://sites.google.com/view/editier"
-        }
-      ],
-      "3D Projects": [
-        {
-          name: "3D Modeling Works",
-          imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg",
-          description: "ผลงานการออกแบบโมเดล 3 มิติ",
-          url: "https://sites.google.com/view/3dmodeles"
-        }
-      ],
-
-    };
-
-    // ฟังก์ชันสำหรับสร้าง HTML ของแต่ละรายการแฟ้มผลงาน
-    function renderPortfolioItem(item) {
-      return `
-        <div class="portfolio-item">
-          <a href="${item.url}" target="_blank" class="portfolio-link">
-            <div class="portfolio-image">
-              <img src="${item.imageUrl}" alt="${item.name}" loading="lazy">
-            </div>
-            <div class="portfolio-info">
-              <h4>${item.name}</h4>
-              <p>${item.description}</p>
-            </div>
-          </a>
-        </div>
-      `;
-    }
-
-    // ฟังก์ชันสำหรับสร้าง HTML ของแต่ละหมวดหมู่แฟ้มผลงาน
-    function renderPortfolioCategory(category, items) {
-      const itemsHtml = items.map(renderPortfolioItem).join('');
-      return `
-        <div class="portfolio-category">
-          <h3>${category}</h3>
-          <div class="portfolio-grid">
-            ${itemsHtml}
-          </div>
-        </div>
-      `;
-    }
-
-    // ฟังก์ชันสำหรับแสดงผลแฟ้มผลงานทั้งหมด
-    function displayPortfolio() {
-      const container = document.getElementById('portfolioContainer');
-      const categoriesHtml = Object.entries(portfolioData)
-        .map(([category, items]) => renderPortfolioCategory(category, items))
-        .join('');
-      container.innerHTML = categoriesHtml;
-
-      // เพิ่ม event listener ให้กับภาพในแต่ละรายการ เพื่อแสดง modal เมื่อคลิก
-      container.querySelectorAll('.portfolio-image img').forEach(img => {
-        img.addEventListener('click', (e) => {
-          e.preventDefault();
-          const modal = document.getElementById('modal');
-          const modalImg = document.getElementById('modalImage');
-          modalImg.src = img.src;
-          modal.style.display = 'flex';
-        });
-      });
-    }
-
-    // เรียกใช้งานฟังก์ชันเพื่อแสดงผลแฟ้มผลงาน
-    displayPortfolio();
-
-    // Radar Chart
-    (function(){
-      const ctx = document.getElementById('radarChart').getContext('2d');
-      window.radarChart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-          labels: [
-            'Adobe Illustrator',
-            'Photoshop',
-            'canva',
-            'After Effects',
-            'Premiere Pro',
-            'OBS Studio',
-            'Vmix',
-            '3D Modeling'
-          ],
-          datasets: [{
-            label: 'ระดับความชำนาญ (%)',
-            data: [55, 40, 55, 55, 55, 60, 35, 30],
-            backgroundColor: 'rgba(37,117,252,0.2)',
-            borderColor: '#2575fc',
-            pointBackgroundColor: '#2575fc',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: '#2575fc',
-            borderWidth: 2
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            r: {
-              beginAtZero: true,
-              max: 100,
-              min: 0,
-              stepSize: 20,
-              ticks: {
-                display: true,
-                color: 'rgba(255,255,255,0.6)',
-                backdropColor: 'transparent'
-              },
-              grid: {
-                color: 'rgba(255,255,255,0.1)',
-                circular: true
-              },
-              angleLines: {
-                color: 'rgba(255,255,255,0.2)'
-              },
-              pointLabels: {
-                color: '#fff',
-                font: {
-                  size: 12,
-                  weight: '500',
-                  family: "'Roboto', sans-serif"
-                }
-              }
-            }
-          },
-          plugins: {
-            legend: {
-              display: true,
-              position: 'top',
-              labels: {
-                color: '#fff',
-                font: {
-                  size: 12,
-                  family: "'Roboto', sans-serif"
-                }
-              }
-            },
-            tooltip: {
-              backgroundColor: 'rgba(0,0,0,0.8)',
-              titleColor: '#fff',
-              bodyColor: '#fff',
-              borderColor: '#2575fc',
-              borderWidth: 1,
-              padding: 10,
-              displayColors: false,
-              callbacks: {
-                label: function(context) {
-                  return `ความชำนาญ: ${context.raw}%`;
-                }
-              }
-            }
-          },
-          animation: {
-            duration: 2000,
-            easing: 'easeInOutQuart'
-          }
-        }
-      });
-    })();
-
-    // จัดการปิด modal
-    document.querySelector('.modal-close').addEventListener('click', () => {
-      document.getElementById('modal').style.display = 'none';
-    });
-
-    window.addEventListener('click', (e) => {
-      if (e.target === document.getElementById('modal')) {
-        document.getElementById('modal').style.display = 'none';
-      }
-    });
-
-    // เพิ่ม event listener สำหรับภาพโปรไฟล์เพื่อแสดง modal เมื่อคลิก
-    document.querySelector('.profile-image img').addEventListener('click', (e) => {
-      const modal = document.getElementById('modal');
-      const modalImg = document.getElementById('modalImage');
-      modalImg.src = e.target.src;
-      modal.style.display = 'flex';
-    });
-
-    // ฟังก์ชันจัดการภาพที่โหลดไม่สำเร็จ
-    function handleImageError(img) {
-      img.onerror = null;
-      img.src = 'placeholder.jpg';
-    }
-
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', () => handleImageError(img));
+      switchLanguage('th');
+      setupPortfolioFilters();
     });
   </script>
-  <script>
-    const CACHE_NAME = 'resume-cache-v1';
-    const urlsToCache = [
-      '/',
-      '/index.html',
-      '/style.css',
-      '/script.js'
-    ];
-
-    self.addEventListener('install', event => {
-      event.waitUntil(
-        caches.open(CACHE_NAME)
-          .then(cache => cache.addAll(urlsToCache))
-      );
-    });
-
-    self.addEventListener('fetch', event => {
-      event.respondWith(
-        caches.match(event.request)
-          .then(response => response || fetch(event.request))
-      );
-    });
-  </script>
-</body></html>
+</body>
+</html>
