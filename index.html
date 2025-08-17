@@ -2,13 +2,21 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="เว็บเรซูเม่ 2025 ของ นิวัฒน์ รัตนะ ในธีม Natural Tech">
-  <meta name="theme-color" content="#1c1c1c">
-  <title>Resume 2025 | นิวัฒน์ รัตนะ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="เว็บเรซูเม่ 2025 ของ นิวัฒน์ รัตนะ ในธีม Hi-Tech">
+  <meta name="theme-color" content="#040c18">
+  <title>Resume 2025 | นิวัฒน์ รัตนะ [Hi-Tech Edition]</title>
   
-  <link rel="manifest" href="">
+  <link rel="manifest" href="site.webmanifest">
 
+  <!-- Google Fonts and Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,58 +24,130 @@
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
+    /* --- General Styling --- */
     *, *::before, *::after { box-sizing: border-box; }
-    img { max-width: 100%; height: auto; }
-    :root { --primary-bg: #121212; --page-bg: #1c1c1c; --portfolio-bg: #2a2a2a; --experience-bg: #2a2a2a; --menu-bg: rgba(0, 0, 0, 0.7); --highlight-color: #66bb6a; --gradient-border: linear-gradient(90deg, #1A4314, #4CAF50); --transition-duration: 0.3s; --transition-timing: cubic-bezier(0.4, 0, 0.2, 1); --text-color: #ffffff; --text-color-secondary: #cccccc; --border-color: #444444; }
-    html, body { margin: 0; padding: 0; background: var(--primary-bg); color: var(--text-color); font-family: 'Roboto', sans-serif; font-size: 21px; overflow-x: hidden; perspective: 1200px; }
+    img { max-width: 100%; height: auto; display: block; }
+    :root { 
+      --primary-bg: #040c18; 
+      --page-bg: rgba(10, 25, 47, 0.85); 
+      --card-bg: rgba(10, 25, 47, 0.7);
+      --menu-bg: rgba(0, 0, 0, 0.7); 
+      --highlight-color: #00f7ff; 
+      --glow-color: rgba(0, 247, 255, 0.5);
+      --transition-duration: 0.5s; 
+      --transition-timing: cubic-bezier(0.25, 0.8, 0.25, 1);
+      --text-color: #e6f1ff; 
+      --text-color-secondary: #a8b2d1;
+      --border-color: rgba(0, 247, 255, 0.3);
+    }
+    html { 
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300f7ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>') 12 12, auto;
+    }
+    body { 
+      margin: 0; 
+      padding: 0; 
+      background: var(--primary-bg); 
+      color: var(--text-color); 
+      font-family: 'Roboto', sans-serif; 
+      font-size: 21px; 
+      overflow-x: hidden; 
+    }
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(255,0,0,0.03), rgba(0,255,0,0.02), rgba(0,0,255,0.03));
+        background-size: 100% 2px, 3px 100%;
+        z-index: 2;
+        pointer-events: none;
+        animation: scanlines 5s linear infinite;
+    }
+    @keyframes scanlines {
+        from { background-position: 0 0; }
+        to { background-position: 0 100%; }
+    }
+
+    /* --- Particle.js Background --- */
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: var(--primary-bg);
+        z-index: -1;
+    }
+
+    /* --- Preloader --- */
     #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--primary-bg); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.75s ease, visibility 0.75s ease; }
     #preloader.hidden { opacity: 0; visibility: hidden; }
     .loader-icon { width: 60px; height: 60px; border: 5px solid var(--border-color); border-top-color: var(--highlight-color); border-radius: 50%; animation: spin 1s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .container { width: 100%; max-width: 1200px; min-height: 100vh; padding-top: 80px; margin: 0 auto; }
-    .folder-menu { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1rem; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(18, 18, 18, 0.85); backdrop-filter: blur(6px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
-    .folder-menu button { background: var(--menu-bg); border: 2px solid transparent; border-image: var(--gradient-border) 1; padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; border-radius: 6px; color: var(--text-color); transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease; position: relative; overflow: hidden; }
-    .folder-menu button:hover { transform: scale(1.08); box-shadow: 0 0 12px rgba(102, 187, 106, 0.8); }
-    .folder-page { width: 90%; max-width: 800px; margin: 2rem auto; padding: 1.5rem; background: var(--page-bg); border: 5px solid; border-image: var(--gradient-border) 1; border-radius: 8px; position: absolute; left: 50%; top: 120px; transform: translateX(-50%) rotateY(90deg) translateZ(-100px); opacity: 0; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1); backface-visibility: hidden; transform-style: preserve-3d; }
-    .folder-page.active { transform: translateX(-50%) rotateY(0deg) translateZ(0); opacity: 1; position: relative; left: 50%; }
-    .folder-page h2 { text-align: center; margin-bottom: 2rem; text-shadow: 0 0 10px rgba(102, 187, 106, 0.5); }
-    .profile-container { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; margin-bottom: 2rem; }
+
+    /* --- Layout & Navigation --- */
+    .container { width: 100%; max-width: 1200px; min-height: 100vh; padding-top: 80px; margin: 0 auto; perspective: 1500px; position: relative; z-index: 10; }
+    .folder-menu { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1rem; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(4, 12, 24, 0.8); backdrop-filter: blur(8px); }
+    .folder-menu button { background: transparent; border: 1px solid var(--border-color); padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; color: var(--text-color); transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease; position: relative; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%); }
+    .folder-menu button:hover { background-color: var(--highlight-color); color: var(--primary-bg); box-shadow: 0 0 15px var(--glow-color); }
+    
+    /* --- Hi-Tech Page Transitions --- */
+    .folder-page { width: 90%; max-width: 800px; margin: 2rem auto; padding: 1.5rem; background: var(--page-bg); border: 1px solid var(--border-color); box-shadow: 0 0 20px var(--glow-color), inset 0 0 10px rgba(0, 247, 255, 0.1); position: absolute; left: 50%; top: 120px; opacity: 0; transition: transform 0.6s var(--transition-timing), opacity 0.6s var(--transition-timing); backface-visibility: hidden; transform-origin: top center; transform: translateX(-50%) rotateX(-90deg) translateZ(0); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); }
+    .folder-page.active { transform: translateX(-50%) rotateX(0deg) translateZ(0); opacity: 1; position: relative; left: 50%; }
+    
+    /* --- Glitch Effect --- */
+    .glitch-effect { position: relative; }
+    .glitch-effect:hover { animation: glitch-anim 0.3s steps(2, end) infinite; }
+    @keyframes glitch-anim {
+      0% { text-shadow: 1px 0 0 #ff00c1, -1px 0 0 #00f7ff; clip-path: inset(10% 0 80% 0); }
+      20% { clip-path: inset(50% 0 10% 0); }
+      40% { clip-path: inset(90% 0 5% 0); }
+      60% { clip-path: inset(20% 0 70% 0); }
+      80% { clip-path: inset(60% 0 30% 0); }
+      100% { clip-path: inset(40% 0 25% 0); }
+    }
+    .folder-page h2 { text-align: center; margin-bottom: 2rem; color: var(--highlight-color); text-shadow: 0 0 10px var(--glow-color); display: inline-block; }
+
+    /* --- Animation --- */
+    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
     .quote { margin-top: 1rem; font-style: italic; text-align: center; color: var(--text-color-secondary); min-height: 1.2em; }
-    .quote::after { content: '▋'; animation: blink 1s step-end infinite; }
+    .quote::after { content: '▋'; animation: blink 1s step-end infinite; color: var(--highlight-color); }
     @keyframes blink { 50% { opacity: 0; } }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- Personal Info Page --- */
+    .profile-container { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; margin-bottom: 2rem; }
+    .profile-image { width: 120px; height: 120px; cursor: pointer; flex-shrink: 0; border: 2px solid var(--highlight-color); box-shadow: 0 0 15px var(--glow-color); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%); }
+    .profile-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+    .profile-image:hover img { transform: scale(1.2); }
+    .profile-info { flex: 1; }
+    .profile-info dl { margin: 0; padding: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.5rem; }
+    .profile-info dt { font-weight: bold; grid-column: 1; color: var(--highlight-color); }
+    .profile-info dd { grid-column: 2; margin: 0; }
+    .qr-code { margin-top: 1rem; text-align: center; }
+    .qr-code img { width: 150px; height: 150px; object-fit: contain; background: #fff; padding: 10px; border: 2px solid var(--highlight-color); }
+
+    /* --- Experience Page --- */
     .experience-container { position: relative; padding: 2rem 0; display: block; }
-    .experience-container::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 100%; background-color: var(--border-color); }
-    .experience-card { padding: 1.5rem; position: relative; width: calc(50% - 2rem); margin-bottom: 2rem; background: var(--experience-bg); border-radius: 8px; transform-style: preserve-3d; transition: transform 0.5s var(--transition-timing), box-shadow 0.5s var(--transition-timing), opacity 0.6s ease-out; will-change: transform, opacity; }
-    .experience-card:hover { transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) scale(1.05); box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5); }
-    .experience-card::after { content: ''; position: absolute; top: 1.5rem; width: 16px; height: 16px; border-radius: 50%; background-color: var(--page-bg); border: 4px solid var(--highlight-color); z-index: 1; }
+    .experience-container::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background-image: linear-gradient(to bottom, transparent, var(--highlight-color), transparent); box-shadow: 0 0 10px var(--glow-color); }
+    .experience-card { padding: 1.5rem; position: relative; width: calc(50% - 2rem); margin-bottom: 2rem; background: var(--card-bg); border-radius: 0; border: 1px solid var(--border-color); transition: box-shadow 0.3s, transform 0.3s; will-change: transform; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);}
+    .experience-card:hover { box-shadow: 0 0 15px var(--glow-color); transform: translateY(-5px); }
+    .experience-card::after { content: ''; position: absolute; top: 1.5rem; width: 16px; height: 16px; border-radius: 50%; background-color: var(--primary-bg); border: 4px solid var(--highlight-color); z-index: 1; box-shadow: 0 0 10px var(--glow-color); animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 5px var(--glow-color); } 50% { box-shadow: 0 0 20px var(--glow-color); } 100% { box-shadow: 0 0 5px var(--glow-color); } }
     .experience-container .experience-card:nth-child(odd) { left: 0; }
     .experience-container .experience-card:nth-child(even) { left: 50%; }
     .experience-container .experience-card:nth-child(odd)::after { right: -2rem; transform: translateX(50%); }
     .experience-container .experience-card:nth-child(even)::after { left: -2rem; transform: translateX(-50%); }
-    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-    .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
-    .lang-switcher button { background: #333; border: 1px solid var(--border-color); color: var(--text-color); padding: 0.3rem 0.6rem; font-size: 0.8rem; cursor: pointer; border-radius: 4px; margin-left: 5px; }
-    .lang-switcher button.active { background: var(--highlight-color); color: #000; }
-    .profile-image { width: 120px; height: 120px; border-radius: 8px; overflow: hidden; cursor: pointer; box-shadow: 0 0 15px rgba(102, 187, 106, 0.6); }
-    .profile-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-    .profile-image:hover img { transform: scale(1.2); }
-    .profile-info { flex: 1; }
-    .qr-code { margin-top: 1rem; text-align: center; }
-    .qr-code img { width: 150px; height: 150px; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px; }
 
-    /* --- FINALIZED PORTFOLIO CARD STYLES --- */
+    /* --- Portfolio Page --- */
     .portfolio-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
-    .filter-btn { background: var(--portfolio-bg); border: 1px solid var(--border-color); color: var(--text-color-secondary); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; }
+    .filter-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color-secondary); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; clip-path: none; }
     .filter-btn:hover { background: #444; color: var(--text-color); }
     .filter-btn.active { background: var(--highlight-color); color: #000; font-weight: bold; border-color: var(--highlight-color); }
     .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-    .portfolio-item { background: var(--portfolio-bg); border-radius: 12px; overflow: hidden; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transform-style: preserve-3d; transition: transform 0.5s var(--transition-timing), box-shadow 0.5s var(--transition-timing); will-change: transform; }
-    .portfolio-item:hover { transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) scale(1.05); box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5); }
+    .portfolio-item { background: var(--card-bg); overflow: hidden; cursor: pointer; border: 1px solid var(--border-color); will-change: transform; transition: box-shadow 0.3s; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);}
+    .portfolio-item:hover { box-shadow: 0 0 20px var(--glow-color); }
     .portfolio-image { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
     .portfolio-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
     .portfolio-item:hover .portfolio-image img { transform: scale(1.1); }
@@ -78,27 +158,32 @@
     .portfolio-info p { font-size: 0.9rem; color: var(--text-color-secondary); margin: 0 0 1rem 0; }
     .portfolio-tags { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
     .tag { background-color: rgba(0,0,0,0.4); color: #ddd; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); }
-    .portfolio-item.hidden { display: none; }
 
+    /* --- Skills Page --- */
     .skills-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
-    .skills-category { background: var(--page-bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); }
-    .skills-category h3 { margin: 0 0 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+    .skills-category { background: var(--card-bg); padding: 1rem; border: 1px solid var(--border-color); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);}
+    .skills-category h3 { margin: 0 0 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: var(--highlight-color); }
     .skills-category ul { list-style: none; padding: 0; margin: 0; }
     .skills-category li { padding: 0.25rem 0; }
-    .modal { display: none; align-items: center; justify-content: center; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(4px); }
-    .modal-content { background: #1e1e1e; border-radius: 8px; max-width: 600px; width: 90%; animation: fadeIn 0.5s; box-shadow: 0 0 20px rgba(0,0,0,0.5); display: flex; flex-direction: column; overflow: hidden; position: relative; border: 1px solid var(--border-color); }
+
+    /* --- Modal --- */
+    .modal { display: none; align-items: center; justify-content: center; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background: rgba(4, 12, 24, 0.9); backdrop-filter: blur(4px); }
+    .modal-content { background: var(--primary-bg); max-width: 600px; width: 90%; animation: fadeIn 0.5s; border: 1px solid var(--highlight-color); box-shadow: 0 0 25px var(--glow-color); display: flex; flex-direction: column; overflow: hidden; position: relative; }
     .modal-close { position: absolute; top: 10px; right: 20px; font-size: 2rem; cursor: pointer; color: #fff; z-index: 10; }
     .modal-content img { width: 100%; height: auto; max-height: 250px; object-fit: cover; }
     .modal-body { padding: 1.5rem; overflow-y: auto; text-align: center; }
     .modal-body h3 { color: var(--highlight-color); margin-top: 0; }
     .modal-footer { text-align: center; padding: 1.5rem; background: #2a2a2a; border-top: 1px solid var(--border-color); }
-    .btn-primary { background-image: var(--gradient-border); border: none; color: white; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 25px; font-weight: bold; transition: transform 0.3s ease, box-shadow 0.3s ease; display: inline-block; }
-    .btn-primary:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); }
+
+    /* --- Buttons & Links --- */
+    .lang-switcher button { clip-path: none; border-radius: 4px; }
+    .btn-primary { background: var(--highlight-color); border: none; color: var(--primary-bg); padding: 0.8rem 1.5rem; text-decoration: none; font-weight: bold; transition: transform 0.3s ease, box-shadow 0.3s ease; display: inline-block; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%); }
+    .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--glow-color); }
     .social-links { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
-    .social-link { padding: 0.8rem 1.5rem; border-radius: 25px; text-decoration: none; color: var(--text-color); font-weight: 500; transition: all 0.3s ease; }
-    .social-link.facebook { background: #333; } .social-link.facebook:hover { background: #1A4314; transform: scale(1.05); }
-    .social-link.line { background: #333; } .social-link.line:hover { background: #4CAF50; transform: scale(1.05); }
-    @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    .social-links a { text-decoration: none; transition: all 0.3s ease; border: 1px solid var(--highlight-color); color: var(--highlight-color); padding: 0.8rem 1.5rem; }
+    .social-links a:hover { background: var(--highlight-color); color: var(--primary-bg); box-shadow: 0 0 15px var(--glow-color); }
+    
+    /* --- Responsive Design --- */
     @media (max-width: 768px) {
         .experience-container::before { left: 20px; }
         .experience-card { width: calc(100% - 40px); left: 40px !important; }
@@ -110,100 +195,90 @@
 </head>
 <body>
 
+  <div id="particles-js"></div>
   <div id="preloader"><div class="loader-icon"></div></div>
   
   <div class="container">
     <nav class="folder-menu">
-      <button data-target="page-personal" id="btn-personal"></button>
-      <button data-target="page-experience" id="btn-experience"></button>
-      <button data-target="page-portfolio" id="btn-portfolio"></button>
-      <button data-target="page-skills" id="btn-skills"></button>
-      <button data-target="page-contact" id="btn-contact"></button>
+      <button data-target="page-personal" data-lang-key="btn-personal"></button>
+      <button data-target="page-experience" data-lang-key="btn-experience"></button>
+      <button data-target="page-portfolio" data-lang-key="btn-portfolio"></button>
+      <button data-target="page-skills" data-lang-key="btn-skills"></button>
+      <button data-target="page-contact" data-lang-key="btn-contact"></button>
       <div class="lang-switcher">
-          <button id="lang-th" onclick="switchLanguage('th')" class="active">TH</button>
-          <button id="lang-en" onclick="switchLanguage('en')">EN</button>
+          <button id="lang-th" onclick="switchLanguage('th')" class="active" aria-pressed="true">TH</button>
+          <button id="lang-en" onclick="switchLanguage('en')" aria-pressed="false">EN</button>
       </div>
     </nav>
 
     <main>
       <div id="page-personal" class="folder-page active">
-        <h2 id="personal-title" class="animate-on-scroll"></h2>
+        <center><h2 data-lang-key="personal-title" class="animate-on-scroll glitch-effect"></h2></center>
         <div class="profile-container animate-on-scroll">
-          <div class="profile-image"><img src="https://i.postimg.cc/zXfR05pT/250421155-NX1s-Y.jpg" alt="Profile Image" loading="lazy"></div>
+          <div class="profile-image"><img src="https://i.postimg.cc/zXfR05pT/250421155-NX1s-Y.jpg" alt="Profile Image of Niwat Rattana" loading="lazy"></div>
           <div class="profile-info">
-            <table><tbody>
-              <tr><td id="name-label"></td><td id="name-value">: นิวัฒน์ รัตนะ</td></tr>
-              <tr><td id="birth-label"></td><td>: 06/09/1994</td></tr>
-              <tr><td id="age-label"></td><td id="ageValue"></td></tr>
-              <tr><td id="height-label"></td><td>: 179 ซม.</td></tr>
-              <tr><td id="weight-label"></td><td>: 95 กก.</td></tr>
-              <tr><td id="blood-label"></td><td>: A</td></tr>
-              <tr><td id="address-label"></td><td>: อ.ปลายพระยา จ.กระบี่</td></tr>
-            </tbody></table>
+            <dl>
+              <dt data-lang-key="name-label"></dt><dd>: นิวัฒน์ รัตนะ</dd>
+              <dt data-lang-key="birth-label"></dt><dd>: 06/09/1994</dd>
+              <dt data-lang-key="age-label"></dt><dd id="ageValue"></dd>
+              <dt data-lang-key="height-label"></dt><dd>: 179 ซม.</dd>
+              <dt data-lang-key="weight-label"></dt><dd>: 95 กก.</dd>
+              <dt data-lang-key="blood-label"></dt><dd>: A</dd>
+              <dt data-lang-key="address-label"></dt><dd>: อ.ปลายพระยา จ.กระบี่</dd>
+            </dl>
             <div class="quote" id="quote"></div>
-            <div class="qr-code"><img src="https://i.postimg.cc/xTpLSBhL/61215.jpg" alt="QR Code" loading="lazy"></div>
+            <div class="qr-code"><img src="https://i.postimg.cc/xTpLSBhL/61215.jpg" alt="QR Code for contact" loading="lazy"></div>
           </div>
         </div>
         <div class="animate-on-scroll">
-          <h2 id="education-title"></h2>
-          <ul>
-            <h3 id="edu1-title"></h3><p><strong id="institute-label1"></strong> <span id="edu1-school"></span></p>
-            <h3 id="edu2-title"></h3><p><strong id="institute-label2"></strong> <span id="edu2-school"></span></p>
-          </ul>
+          <center><h2 data-lang-key="education-title" class="glitch-effect"></h2></center>
+          <div class="education-entry"> <h3 data-lang-key="edu1-title"></h3> <p><strong data-lang-key="institute-label1"></strong> <span data-lang-key="edu1-school"></span></p> </div>
+          <div class="education-entry"> <h3 data-lang-key="edu2-title"></h3> <p><strong data-lang-key="institute-label2"></strong> <span data-lang-key="edu2-school"></span></p> </div>
         </div>
         <div class="animate-on-scroll">
-          <h2 id="interests-title"></h2>
-          <ul id="interests-list"></ul>
+          <center><h2 data-lang-key="interests-title" class="glitch-effect"></h2></center>
+          <ul data-lang-key="interests-list"></ul>
         </div>
       </div>
 
       <div id="page-experience" class="folder-page">
-        <h2 id="experience-title" class="animate-on-scroll"></h2>
+        <center><h2 data-lang-key="experience-title" class="animate-on-scroll glitch-effect"></h2></center>
         <div class="experience-container" id="experience-container"></div>
       </div>
       
       <div id="page-portfolio" class="folder-page">
-        <h2 id="portfolio-title" class="animate-on-scroll"></h2>
+        <center><h2 data-lang-key="portfolio-title" class="animate-on-scroll glitch-effect"></h2></center>
         <div class="portfolio-filters animate-on-scroll">
-          <button class="filter-btn active" data-filter="all" id="filter-all"></button>
-          <button class="filter-btn" data-filter="digital-design" id="filter-graphic"></button>
-          <button class="filter-btn" data-filter="editing" id="filter-video"></button>
-          <button class="filter-btn" data-filter="3d-projects" id="filter-3d"></button>
+          <button class="filter-btn active" data-filter="all" data-lang-key="filter-all"></button>
+          <button class="filter-btn" data-filter="digital-design" data-lang-key="filter-graphic"></button>
+          <button class="filter-btn" data-filter="editing" data-lang-key="filter-video"></button>
+          <button class="filter-btn" data-filter="3d-projects" data-lang-key="filter-3d"></button>
         </div>
         <div id="portfolioContainer" class="portfolio-grid"></div>
       </div>
 
       <div id="page-skills" class="folder-page">
-        <h2 id="skills-title" class="animate-on-scroll"></h2>
+        <center><h2 data-lang-key="skills-title" class="animate-on-scroll glitch-effect"></h2></center>
         <div class="skills-container">
-          <div class="skills-category animate-on-scroll">
-            <h3 id="skills-cat1-title"></h3>
-            <ul id="skills-cat1-list"></ul>
-          </div>
-          <div class="skills-category animate-on-scroll">
-            <h3 id="skills-cat2-title"></h3>
-            <ul id="skills-cat2-list"></ul>
-          </div>
-          <div class="skills-category animate-on-scroll">
-            <h3 id="skills-cat3-title"></h3>
-            <ul id="skills-cat3-list"></ul>
-          </div>
+          <div class="skills-category animate-on-scroll"> <h3 data-lang-key="skills-cat1-title"></h3> <ul data-lang-key="skills-cat1-list"></ul> </div>
+          <div class="skills-category animate-on-scroll"> <h3 data-lang-key="skills-cat2-title"></h3> <ul data-lang-key="skills-cat2-list"></ul> </div>
+          <div class="skills-category animate-on-scroll"> <h3 data-lang-key="skills-cat3-title"></h3> <ul data-lang-key="skills-cat3-list"></ul> </div>
         </div>
         <div class="radar-chart-container animate-on-scroll"><canvas id="radarChart"></canvas></div>
       </div>
       
       <div id="page-contact" class="folder-page">
-        <h2 id="contact-title" class="animate-on-scroll"></h2>
+        <center><h2 data-lang-key="contact-title" class="animate-on-scroll glitch-effect"></h2></center>
         <div class="contact-info animate-on-scroll">
-          <p><strong id="contact-name-label"></strong> <span id="contact-name-value"></span></p>
-          <p><strong>อีเมล:</strong> <a href="mailto:joratna@hotmail.com" class="contact-link"><i class="fas fa-envelope"></i> joratna@hotmail.com</a></p>
-          <p><strong id="contact-tel-label"></strong> <a href="tel:0886092297" class="contact-link"><i class="fas fa-phone"></i> 088-609-2297</a></p>
-          <p><strong>Line ID:</strong> <a href="https://line.me/ti/p/~niwatjo" class="contact-link" target="_blank"><i class="fab fa-line"></i> niwatjo</a></p>
-          <p id="contact-availability"></p>
+          <p><strong data-lang-key="contact-name-label" style="color:var(--highlight-color)"></strong> <span data-lang-key="contact-name-value"></span></p>
+          <p><strong style="color:var(--highlight-color)">อีเมล:</strong> <a href="mailto:joratna@hotmail.com" class="contact-link"><i class="fas fa-envelope"></i> joratna@hotmail.com</a></p>
+          <p><strong data-lang-key="contact-tel-label" style="color:var(--highlight-color)"></strong> <a href="tel:0886092297" class="contact-link"><i class="fas fa-phone"></i> 088-609-2297</a></p>
+          <p><strong style="color:var(--highlight-color)">Line ID:</strong> <a href="https://line.me/ti/p/~niwatjo" class="contact-link" target="_blank"><i class="fab fa-line"></i> niwatjo</a></p>
+          <p data-lang-key="contact-availability"></p>
         </div>
         <div class="social-links animate-on-scroll">
-          <a href="https://www.facebook.com/niwatjo.rattanajo" target="_blank" rel="noopener" class="social-link facebook"><i class="fab fa-facebook"></i> Facebook</a>
-          <a href="https://line.me/ti/p/~niwatjo" target="_blank" rel="noopener" class="social-link line"><i class="fab fa-line"></i> Line</a>
+          <a href="https://www.facebook.com/niwatjo.rattanajo" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
+          <a href="https://line.me/ti/p/~niwatjo" target="_blank" rel="noopener"><i class="fab fa-line"></i> Line</a>
         </div>
       </div>
     </main>
@@ -211,12 +286,10 @@
 
   <div id="modal" class="modal">
     <div class="modal-content">
-      <span class="modal-close">×</span>
-      <img id="modalImage" src="" alt="Portfolio Image" loading="lazy">
+      <span class="modal-close">&times;</span>
+      <img id="modalImage" src="" alt="Portfolio Image Preview" loading="lazy">
       <div class="modal-body">
-          <h3 id="modalTitle"></h3>
-          <p id="modalDescription"></p>
-          <div id="modalTags" class="portfolio-tags"></div>
+          <h3 id="modalTitle"></h3> <p id="modalDescription"></p> <div id="modalTags" class="portfolio-tags"></div>
       </div>
       <div class="modal-footer">
           <a id="modalLink" href="#" target="_blank" rel="noopener" class="btn-primary" data-lang-key="view-project-btn"></a>
@@ -224,32 +297,282 @@
     </div>
   </div>
 
-  <audio id="transitionSound" preload="none"><source src="data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZw==" type="audio/mpeg"></audio>
+  <audio id="clickSound" preload="auto"><source src="data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YUIAAABsbGwsLCwsLCwsLCwsLCwsLCwsLCwsLCx7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t/e3t" type="audio/wav"></audio>
+  <audio id="hoverSound" preload="auto"><source src="data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YUIAAABsbGwsLCx7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t" type="audio/wav"></audio>
+
+  <!-- Particle.js Library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <script>
+    // --- PARTICLE.JS CONFIG ---
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#00f7ff" },
+        "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
+        "opacity": { "value": 0.5, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+        "size": { "value": 3, "random": true, "anim": { "enable": false } },
+        "line_linked": { "enable": true, "distance": 150, "color": "#00f7ff", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+        "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
+      },
+      "retina_detect": true
+    });
+
+    // --- DATA OBJECTS ---
+    const langData = {
+      'th': {
+        'btn-personal': 'ข้อมูลส่วนตัว', 'btn-experience': 'ประสบการณ์', 'btn-portfolio': 'แฟ้มผลงาน', 'btn-skills': 'ทักษะ & เครื่องมือ', 'btn-contact': 'ติดต่อ',
+        'personal-title': 'ข้อมูลส่วนตัว', 'name-label': 'ชื่อ', 'birth-label': 'วันเกิด', 'age-label': 'อายุ', 'height-label': 'ส่วนสูง', 'weight-label': 'น้ำหนัก', 'blood-label': 'กรุ๊ปเลือด', 'address-label': 'ที่อยู่',
+        'quote': '“Do what you like, Then life be happy”',
+        'education-title': 'การศึกษา', 'edu1-title': '2554: Major Science - Math', 'institute-label1': 'สถาบัน:', 'edu1-school': 'Bhadungsi Pittaya School', 'edu2-title': '2559: Multimedia Technology', 'institute-label2': 'สถาบัน:', 'edu2-school': 'Rajamangala University of Technology Suvarnabhumi',
+        'interests-title': 'ความสนใจ', 'interests-list': '<li>การถ่ายภาพ/ถ่ายวีดีโอ</li><li>การเดินทางรถยนตร์</li><li>การอ่านมังงะ</li><li>เทคโนโลยีใหม่</li><li>ว่ายน้ำ</li>',
+        'experience-title': 'ประสบการณ์', 'exp1-title': 'ร้านเงินทรัพรุ่งเรืองเฟอร์นิเจอร์', 'exp1-pos': 'ตำแหน่ง: พนักงานขาย', 'exp2-title': 'ธุรกิจส่วนตัว', 'exp2-pos': 'ทำสวนปาล์ม / ทุเรียน', 'exp3-title': 'บริษัทไอติมเอสต้า', 'exp3-pos': 'ตำแหน่ง: Graphics Designer', 'exp3-duty': 'หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอสินค้า, ทำโมชั่นกราฟฟิค, จัดระบบควบคุมไลฟ์สด', 'exp4-title': 'บริษัทโป้ปี่เป้งอัน', 'exp4-pos': 'ตำแหน่ง: Graphics Designer', 'exp4-duty': 'หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอ, ทำโมชั่นกราฟฟิค', 'exp5-title': 'บริษัทมิซูชูเกียจ', 'exp5-pos': 'ตำแหน่ง: Graphics Designer', 'exp5-duty': 'หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอ, ทำโมชั่นกราฟฟิค', 'exp6-title': 'วิทยาลัยวีแบค', 'exp6-pos': 'ตำแหน่ง: ครูผู้สอนคอมพิวเตอร์กราฟิก', 'exp6-duty': 'หน้าที่: สอนคอมพิวเตอร์กราฟฟิคระดับ ปวช.', 'exp7-title': 'หจก.ฟันนี่ดี', 'exp7-pos': 'ตำแหน่ง: 3D Modeler', 'exp7-duty': 'หน้าที่: ขึ้นแบบโมเดล 3 มิติ เครื่องออกกำลังกายกลางแจ้ง',
+        'portfolio-title': 'แฟ้มผลงาน', 'filter-all': 'ทั้งหมด', 'filter-graphic': 'Graphic Design', 'filter-video': 'Video & Motion', 'filter-3d': '3D Projects',
+        'view-project-btn': 'ดูโปรเจกต์เต็ม', 'view-details-cta': 'ดูรายละเอียด',
+        'skills-title': 'ทักษะ & เครื่องมือ', 'skills-cat1-title': 'Software & Tools', 'skills-cat1-list': '<li>Adobe Illustrator (Ai)</li><li>Photoshop (Ps)</li><li>canva</li><li>After Effects (Ae)</li><li>Premiere Pro</li><li>OBS</li><li>Vmix</li>', 'skills-cat2-title': 'Hardware / OS', 'skills-cat2-list': '<li>Windows</li><li>MacOS</li>', 'skills-cat3-title': 'Other Skills', 'skills-cat3-list': '<li>3D Modeling</li><li>Graphic Design</li><li>ถ่ายภาพ/ตัดต่อวีดีโอ</li><li>Live Control</li>',
+        'contact-title': 'ติดต่อ', 'contact-name-label': 'ชื่อ:', 'contact-name-value': 'นิวัฒน์ รัตนะ (Niwat R.)', 'contact-tel-label': 'โทร:', 'contact-availability': 'คุณสามารถติดต่อได้ทุกวันจันทร์ - ศุกร์ เวลา 09.00 - 17.00 น.',
+        'radar-label': 'ระดับความชำนาญ (%)', 'age-unit': 'ปี'
+      },
+      'en': {
+        'btn-personal': 'Personal', 'btn-experience': 'Experience', 'btn-portfolio': 'Portfolio', 'btn-skills': 'Skills & Tools', 'btn-contact': 'Contact',
+        'personal-title': 'Personal Info', 'name-label': 'Name', 'birth-label': 'Birthday', 'age-label': 'Age', 'height-label': 'Height', 'weight-label': 'Weight', 'blood-label': 'Blood Type', 'address-label': 'Address',
+        'quote': '“Do what you like, Then life be happy”',
+        'education-title': 'Education', 'edu1-title': '2011: Major Science - Math', 'institute-label1': 'Institute:', 'edu1-school': 'Bhadungsi Pittaya School', 'edu2-title': '2016: Multimedia Technology', 'institute-label2': 'Institute:', 'edu2-school': 'Rajamangala University of Technology Suvarnabhumi',
+        'interests-title': 'Interests', 'interests-list': '<li>Photography/Videography</li><li>Road Trips</li><li>Reading Manga</li><li>New Technology</li><li>Swimming</li>',
+        'experience-title': 'Experience', 'exp1-title': 'Ngernsup Rungrueang Furniture', 'exp1-pos': 'Position: Salesperson', 'exp2-title': 'Private Business', 'exp2-pos': 'Palm & Durian Farming', 'exp3-title': 'Esta Ice Cream Co.', 'exp3-pos': 'Position: Graphics Designer', 'exp3-duty': 'Duties: Product graphic design, video editing, motion graphics, live stream control', 'exp4-title': 'Popeepeng-un Co.', 'exp4-pos': 'Position: Graphics Designer', 'exp4-duty': 'Duties: Product graphic design, video editing, motion graphics', 'exp5-title': 'Mizuchukiat Co.', 'exp5-pos': 'Position: Graphics Designer', 'exp5-duty': 'Duties: Product graphic design, video editing, motion graphics', 'exp6-title': 'V-Bac College', 'exp6-pos': 'Position: Computer Graphics Teacher', 'exp6-duty': 'Duties: Taught computer graphics for vocational level', 'exp7-title': 'Funny D Ltd. Part.', 'exp7-pos': 'Position: 3D Modeler', 'exp7-duty': 'Duties: 3D modeling of outdoor fitness equipment',
+        'portfolio-title': 'Portfolio', 'filter-all': 'All', 'filter-graphic': 'Graphic Design', 'filter-video': 'Video & Motion', 'filter-3d': '3D Projects',
+        'view-project-btn': 'View Full Project', 'view-details-cta': 'View Details',
+        'skills-title': 'Skills & Tools', 'skills-cat1-title': 'Software & Tools', 'skills-cat1-list': '<li>Adobe Illustrator (Ai)</li><li>Photoshop (Ps)</li><li>Canva</li><li>After Effects (Ae)</li><li>Premiere Pro</li><li>OBS</li><li>Vmix</li>', 'skills-cat2-title': 'Hardware / OS', 'skills-cat2-list': '<li>Windows</li><li>MacOS</li>', 'skills-cat3-title': 'Other Skills', 'skills-cat3-list': '<li>3D Modeling</li><li>Graphic Design</li><li>Photography/Videography</li><li>Live Control</li>',
+        'contact-title': 'Contact', 'contact-name-label': 'Name:', 'contact-name-value': 'Niwat Rattana (Niwat R.)', 'contact-tel-label': 'Tel:', 'contact-availability': 'Available Mon - Fri, 09:00 - 17:00.',
+        'radar-label': 'Proficiency Level (%)', 'age-unit': 'years old'
+      }
+    };
+    const portfolioData = {
+      "digital-design": { name: "Graphic Design Portfolio", imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg", tags: ["Illustrator", "Photoshop", "Canva"], url: "https://sites.google.com/view/worksposter", lang: { th: { description: "ผลงานออกแบบกราฟิก, โปสเตอร์, และสื่อดิจิทัล" }, en: { description: "Graphic designs, posters, and digital media works." }}},
+      "editing": { name: "Video & Motion", imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg", tags: ["Premiere Pro", "After Effects"], url: "https://sites.google.com/view/editier", lang: { th: { description: "งานตัดต่อวิดีโอและโมชั่นกราฟิก" }, en: { description: "Video editing and motion graphics projects." }}},
+      "3d-projects": { name: "3D Modeling Works", imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg", tags: ["3D Modeling"], url: "https://sites.google.com/view/3dmodeles", lang: { th: { description: "ผลงานการออกแบบโมเดล 3 มิติ" }, en: { description: "Collection of 3D modeling works." }}}
+    };
+    const experienceData = [
+      { year: '2566 - 2567', key: 'exp1' }, { year: '2564 - 2565', key: 'exp2' }, { year: '2563-2564', key: 'exp3' },
+      { year: '2562-2563', key: 'exp4' }, { year: '2561-2562', key: 'exp5' }, { year: '2560', key: 'exp6' }, { year: '2559', key: 'exp7' }
+    ];
+
+    // --- MAIN SCRIPT ---
     document.addEventListener('DOMContentLoaded', () => {
-      const langData = { 'th': {'btn-personal':'ข้อมูลส่วนตัว','btn-experience':'ประสบการณ์','btn-portfolio':'แฟ้มผลงาน','btn-skills':'ทักษะ & เครื่องมือ','btn-contact':'ติดต่อ','personal-title':'ข้อมูลส่วนตัว','name-label':'ชื่อ','birth-label':'วันเกิด','age-label':'อายุ','height-label':'ส่วนสูง','weight-label':'น้ำหนัก','blood-label':'กรุ๊ปเลือด','address-label':'ที่อยู่','quote':'“Do what you like, Then life be happy”','education-title':'การศึกษา','edu1-title':'2554: Major Science - Math','institute-label1':'สถาบัน:','edu1-school':'Bhadungsi Pittaya School','edu2-title':'2559: Multimedia Technology','institute-label2':'สถาบัน:','edu2-school':'Rajamangala University of Technology Suvarnabhumi','interests-title':'ความสนใจ','interests-list':'<li>การถ่ายภาพ/ถ่ายวีดีโอ</li><li>การเดินทางรถยนตร์</li><li>การอ่านมังงะ</li><li>เทคโนโลยีใหม่</li><li>ว่ายน้ำ</li>','experience-title':'ประสบการณ์','exp1-title':'ร้านเงินทรัพรุ่งเรืองเฟอร์นิเจอร์','exp1-pos':'ตำแหน่ง: พนักงานขาย','exp2-title':'ธุรกิจส่วนตัว','exp2-pos':'ทำสวนปาล์ม / ทุเรียน','exp3-title':'บริษัทไอติมเอสต้า','exp3-pos':'ตำแหน่ง: Graphics Designer','exp3-duty':'หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอสินค้า, ทำโมชั่นกราฟฟิค, จัดระบบควบคุมไลฟ์สด','exp4-title':'บริษัทโป้ปี่เป้งอัน','exp4-pos':'ตำแหน่ง: Graphics Designer','exp4-duty':'หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอ, ทำโมชั่นกราฟฟิค','exp5-title':'บริษัทมิซูชูเกียจ','exp5-pos':'ตำแหน่ง: Graphics Designer','exp5-duty':'หน้าที่: ออกแบบภาพกราฟฟิคสินค้า, ตัดต่อวีดีโอ, ทำโมชั่นกราฟฟิค','exp6-title':'วิทยาลัยวีแบค','exp6-pos':'ตำแหน่ง: ครูผู้สอนคอมพิวเตอร์กราฟิก','exp6-duty':'หน้าที่: สอนคอมพิวเตอร์กราฟฟิคระดับ ปวช.','exp7-title':'หจก.ฟันนี่ดี','exp7-pos':'ตำแหน่ง: 3D Modeler','exp7-duty':'หน้าที่: ขึ้นแบบโมเดล 3 มิติ เครื่องออกกำลังกายกลางแจ้ง','portfolio-title':'แฟ้มผลงาน','filter-all':'ทั้งหมด','filter-graphic':'Graphic Design','filter-video':'Video & Motion','filter-3d':'3D Projects','view-project-btn':'ดูโปรเจกต์เต็ม','view-details-cta':'ดูรายละเอียด','skills-title':'ทักษะ & เครื่องมือ','skills-cat1-title':'Software & Tools','skills-cat1-list':'<li>Adobe Illustrator (Ai)</li><li>Photoshop (Ps)</li><li>canva</li><li>After Effects (Ae)</li><li>Premiere Pro</li><li>OBS</li><li>Vmix</li>','skills-cat2-title':'Hardware / OS','skills-cat2-list':'<li>Windows</li><li>MacOS</li>','skills-cat3-title':'Other Skills','skills-cat3-list':'<li>3D Modeling</li><li>Graphic Design</li><li>ถ่ายภาพ/ตัดต่อวีดีโอ</li><li>Live Control</li>','contact-title':'ติดต่อ','contact-name-label':'ชื่อ:','contact-name-value':'นิวัฒน์ รัตนะ (Niwat R.)','contact-tel-label':'โทร:','contact-availability':'คุณสามารถติดต่อได้ทุกวันจันทร์ - ศุกร์ เวลา 09.00 - 17.00 น.','radar-label':'ระดับความชำนาญ (%)', 'age-unit': 'ปี'}, 'en': {'btn-personal':'Personal','btn-experience':'Experience','btn-portfolio':'Portfolio','btn-skills':'Skills & Tools','btn-contact':'Contact','personal-title':'Personal Info','name-label':'Name','birth-label':'Birthday','age-label':'Age','height-label':'Height','weight-label':'Weight','blood-label':'Blood Type','address-label':'Address','quote':'“Do what you like, Then life be happy”','education-title':'Education','edu1-title':'2011: Major Science - Math','institute-label1':'Institute:','edu1-school':'Bhadungsi Pittaya School','edu2-title':'2016: Multimedia Technology','institute-label2':'Institute:','edu2-school':'Rajamangala University of Technology Suvarnabhumi','interests-title':'Interests','interests-list':'<li>Photography/Videography</li><li>Road Trips</li><li>Reading Manga</li><li>New Technology</li><li>Swimming</li>','experience-title':'Experience','exp1-title':'Ngernsup Rungrueang Furniture','exp1-pos':'Position: Salesperson','exp2-title':'Private Business','exp2-pos':'Palm & Durian Farming','exp3-title':'Esta Ice Cream Co.','exp3-pos':'Position: Graphics Designer','exp3-duty':'Duties: Product graphic design, video editing, motion graphics, live stream control','exp4-title':'Popeepeng-un Co.','exp4-pos':'Position: Graphics Designer','exp4-duty':'Duties: Product graphic design, video editing, motion graphics','exp5-title':'Mizuchukiat Co.','exp5-pos':'Position: Graphics Designer','exp5-duty':'Duties: Product graphic design, video editing, motion graphics','exp6-title':'V-Bac College','exp6-pos':'Position: Computer Graphics Teacher','exp6-duty':'Duties: Taught computer graphics for vocational level','exp7-title':'Funny D Ltd. Part.','exp7-pos':'Position: 3D Modeler','exp7-duty':'Duties: 3D modeling of outdoor fitness equipment','portfolio-title':'Portfolio','filter-all':'All','filter-graphic':'Graphic Design','filter-video':'Video & Motion','filter-3d':'3D Projects','view-project-btn':'View Full Project','view-details-cta':'View Details','skills-title':'Skills & Tools','skills-cat1-title':'Software & Tools','skills-cat1-list':'<li>Adobe Illustrator (Ai)</li><li>Photoshop (Ps)</li><li>Canva</li><li>After Effects (Ae)</li><li>Premiere Pro</li><li>OBS</li><li>Vmix</li>','skills-cat2-title':'Hardware / OS','skills-cat2-list':'<li>Windows</li><li>MacOS</li>','skills-cat3-title':'Other Skills','skills-cat3-list':'<li>3D Modeling</li><li>Graphic Design</li><li>Photography/Videography</li><li>Live Control</li>','contact-title':'Contact','contact-name-label':'Name:','contact-name-value':'Niwat Rattana (Niwat R.)','contact-tel-label':'Tel:','contact-availability':'Available Mon - Fri, 09:00 - 17:00.','radar-label':'Proficiency Level (%)', 'age-unit': 'years old'} };
-      const portfolioData = { "digital-design": { name: "Graphic Design Portfolio", imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg", tags: ["Illustrator", "Photoshop", "Canva"], url: "https://sites.google.com/view/worksposter", lang: { th: { description: "ผลงานออกแบบกราฟิก, โปสเตอร์, และสื่อดิจิทัล" }, en: { description: "Graphic designs, posters, and digital media works." }}}, "editing": { name: "Video & Motion", imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg", tags: ["Premiere Pro", "After Effects"], url: "https://sites.google.com/view/editier", lang: { th: { description: "งานตัดต่อวิดีโอและโมชั่นกราฟิก" }, en: { description: "Video editing and motion graphics projects." }}}, "3d-projects": { name: "3D Modeling Works", imageUrl: "https://i.postimg.cc/vTZncJ2Y/google-drive-icon-36409.jpg", tags: ["3D Modeling"], url: "https://sites.google.com/view/3dmodeles", lang: { th: { description: "ผลงานการออกแบบโมเดล 3 มิติ" }, en: { description: "Collection of 3D modeling works." }}} };
-      const experienceData = [ { year: '2566 - 2567', key: 'exp1' }, { year: '2564 - 2565', key: 'exp2' }, { year: '2563-2564', key: 'exp3' }, { year: '2562-2563', key: 'exp4' }, { year: '2561-2562', key: 'exp5' }, { year: '2560', key: 'exp6' }, { year: '2559', key: 'exp7' } ];
 
-      function calculateAge() { const birthDate = new Date(1994, 9 - 1, 6); let age = new Date().getFullYear() - birthDate.getFullYear(); const m = new Date().getMonth() - birthDate.getMonth(); if (m < 0 || (m === 0 && new Date().getDate() < birthDate.getDate())) { age--; } return age; }
-      function renderExperience(lang) { const container = document.getElementById('experience-container'); container.innerHTML = experienceData.map(exp => `<div class="experience-card animate-on-scroll"><h3>${exp.year}</h3><p><strong>${langData[lang][exp.key + '-title']}</strong><br>${langData[lang][exp.key + '-pos']}<br>${langData[lang][exp.key + '-duty'] || ''}</p></div>`).join(''); }
-      function typeWriter(element, text, speed = 50) { let i = 0; element.textContent = ""; function typing() { if (i < text.length) { element.textContent += text.charAt(i); i++; setTimeout(typing, speed); } } typing(); }
-      window.switchLanguage = function(lang) { document.documentElement.lang = lang; for (const key in langData[lang]) { const element = document.getElementById(key); if (element) { if (key.includes('-list')) element.innerHTML = langData[lang][key]; else element.textContent = langData[lang][key]; } } const age = calculateAge(); document.getElementById('ageValue').textContent = `: ${age} ${langData[lang]['age-unit']}`; document.getElementById('lang-th').classList.toggle('active', lang === 'th'); document.getElementById('lang-en').classList.toggle('active', lang === 'en'); const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all'; displayPortfolio(activeFilter, lang); renderExperience(lang); if (window.radarChart) { window.radarChart.data.datasets[0].label = langData[lang]['radar-label']; window.radarChart.update(); } const quoteEl = document.getElementById('quote'); if(quoteEl) typeWriter(quoteEl, langData[lang]['quote']); document.querySelectorAll('.animate-on-scroll').forEach(el => el.classList.remove('is-visible')); setTimeout(setupScrollAnimations, 100); }
-      function displayPortfolio(filter = 'all', lang = 'th') { const container = document.getElementById('portfolioContainer'); container.innerHTML = ''; Object.keys(portfolioData).forEach(key => { if (filter === 'all' || key === filter) { const item = portfolioData[key]; const div = document.createElement('div'); div.className = 'portfolio-item animate-on-scroll'; div.setAttribute('data-key', key); div.innerHTML = `<div class="portfolio-image"><img src="${item.imageUrl}" alt="${item.name}" loading="lazy"></div><div class="portfolio-info"><h4>${item.name}</h4><p>${item.lang[lang].description}</p><div class="portfolio-tags">${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div></div>`; container.appendChild(div); } }); addPortfolioClickListeners(); setupScrollAnimations(); }
-      function addPortfolioClickListeners() { document.querySelectorAll('.portfolio-item').forEach(item => { item.addEventListener('click', () => { const projectData = portfolioData[item.getAttribute('data-key')]; const currentLang = document.documentElement.lang || 'th'; const modal = document.getElementById('modal'); modal.querySelector('#modalImage').src = projectData.imageUrl; modal.querySelector('.modal-body').style.display = 'block'; modal.querySelector('.modal-footer').style.display = 'block'; modal.querySelector('#modalTitle').textContent = projectData.name; modal.querySelector('#modalDescription').textContent = projectData.lang[currentLang].description; modal.querySelector('#modalTags').innerHTML = projectData.tags.map(tag => `<span class="tag">${tag}</span>`).join(''); modal.querySelector('#modalLink').href = projectData.url; modal.querySelector('[data-lang-key="view-project-btn"]').textContent = langData[currentLang]['view-project-btn']; modal.style.display = 'flex'; }); }); }
-      function setupPortfolioFilters() { document.querySelectorAll('.filter-btn').forEach(button => { button.addEventListener('click', () => { document.querySelector('.filter-btn.active').classList.remove('active'); button.classList.add('active'); displayPortfolio(button.getAttribute('data-filter'), document.documentElement.lang || 'th'); }); }); }
-      function setupScrollAnimations() { const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 }); document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el)); }
+      let radarChart;
+      const clickSound = document.getElementById('clickSound');
+      const hoverSound = document.getElementById('hoverSound');
 
-      const pages = document.querySelectorAll('.folder-page'); document.querySelectorAll('.folder-menu button[data-target]').forEach(button => { button.addEventListener('click', () => { document.getElementById('transitionSound').play().catch(()=>{}); pages.forEach(page => page.classList.toggle('active', page.id === button.getAttribute('data-target'))); setTimeout(setupScrollAnimations, 500); }); });
-      const ctx = document.getElementById('radarChart').getContext('2d'); window.radarChart = new Chart(ctx, { type: 'radar', data: { labels: ['Illustrator', 'Photoshop', 'Canva', 'After Effects', 'Premiere Pro', '3D Modeling', 'OBS', 'Vmix'], datasets: [{ label: ' ', data: [55, 40, 55, 55, 55, 30, 60, 35], backgroundColor: 'rgba(102, 187, 106, 0.2)', borderColor: '#66bb6a', borderWidth: 2, pointBackgroundColor: '#66bb6a', pointBorderColor: '#fff' }] }, options: { responsive: true, maintainAspectRatio: true, scales: { r: { beginAtZero: true, max: 100, ticks: { display: false }, grid: { color: 'rgba(255, 255, 255, 0.1)' }, angleLines: { color: 'rgba(255, 255, 255, 0.2)' }, pointLabels: { color: '#fff' } } }, plugins: { legend: { labels: { color: '#fff' } } } } });
-      const modal = document.getElementById('modal'); document.querySelector('.modal-close').addEventListener('click', () => modal.style.display = 'none'); modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; }); document.querySelector('.profile-image').addEventListener('click', () => { const profileModal = document.getElementById('modal'); profileModal.querySelector('#modalImage').src = document.querySelector('.profile-image img').src; profileModal.querySelector('.modal-body').style.display = 'none'; profileModal.querySelector('.modal-footer').style.display = 'none'; profileModal.style.display = 'flex'; });
+      // --- CORE FUNCTIONS ---
+      function calculateAge() {
+        const birthDate = new Date(1994, 9 - 1, 6);
+        let age = new Date().getFullYear() - birthDate.getFullYear();
+        const m = new Date().getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && new Date().getDate() < birthDate.getDate())) {
+          age--;
+        }
+        return age;
+      }
+
+      function typeWriter(element, text, speed = 50) {
+        let i = 0;
+        element.textContent = "";
+        function typing() {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+          }
+        }
+        typing();
+      }
+
+      // --- RENDERING FUNCTIONS ---
+      function renderExperience(lang) {
+        const container = document.getElementById('experience-container');
+        if (!container) return;
+        const translations = langData[lang];
+        container.innerHTML = experienceData.map(exp => `
+          <div class="experience-card animate-on-scroll">
+            <h3>${exp.year}</h3>
+            <p><strong>${translations[exp.key + '-title']}</strong><br>
+            ${translations[exp.key + '-pos']}<br>
+            ${translations[exp.key + '-duty'] || ''}</p>
+          </div>`).join('');
+      }
+
+      function displayPortfolio(filter = 'all', lang = 'th') {
+        const container = document.getElementById('portfolioContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        Object.keys(portfolioData).forEach(key => {
+          if (filter === 'all' || key === filter) {
+            const item = portfolioData[key];
+            const div = document.createElement('div');
+            div.className = 'portfolio-item animate-on-scroll';
+            div.setAttribute('data-key', key);
+            div.innerHTML = `
+              <div class="portfolio-image">
+                <img src="${item.imageUrl}" alt="${item.name}" loading="lazy">
+              </div>
+              <div class="portfolio-info">
+                <h4>${item.name}</h4>
+                <p>${item.lang[lang].description}</p>
+                <div class="portfolio-tags">${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+              </div>`;
+            container.appendChild(div);
+          }
+        });
+        addPortfolioClickListeners();
+        setupScrollAnimations();
+      }
+
+      // --- LANGUAGE SWITCHER ---
+      window.switchLanguage = function(lang) {
+        document.documentElement.lang = lang;
+        const translations = langData[lang];
+
+        document.querySelectorAll('[data-lang-key]').forEach(element => {
+          const key = element.dataset.langKey;
+          if (translations[key]) {
+            if (key.includes('-list')) {
+              element.innerHTML = translations[key];
+            } else {
+              element.textContent = translations[key];
+            }
+          }
+        });
+
+        document.getElementById('ageValue').textContent = `: ${calculateAge()} ${translations['age-unit']}`;
+        const quoteEl = document.getElementById('quote');
+        if(quoteEl) typeWriter(quoteEl, translations['quote']);
+
+        document.getElementById('lang-th').classList.toggle('active', lang === 'th');
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+        document.getElementById('lang-th').setAttribute('aria-pressed', lang === 'th');
+        document.getElementById('lang-en').setAttribute('aria-pressed', lang === 'en');
+
+        const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+        displayPortfolio(activeFilter, lang);
+        renderExperience(lang);
+        if (radarChart) {
+          radarChart.data.datasets[0].label = translations['radar-label'];
+          radarChart.update();
+        }
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => el.classList.remove('is-visible'));
+        setTimeout(setupScrollAnimations, 100);
+      }
+
+      // --- EVENT LISTENERS & SETUP ---
+      function addPortfolioClickListeners() {
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+          item.addEventListener('click', () => {
+            const projectData = portfolioData[item.dataset.key];
+            const currentLang = document.documentElement.lang || 'th';
+            const modal = document.getElementById('modal');
+            modal.querySelector('#modalImage').src = projectData.imageUrl;
+            modal.querySelector('.modal-body').style.display = 'block';
+            modal.querySelector('.modal-footer').style.display = 'block';
+            modal.querySelector('#modalTitle').textContent = projectData.name;
+            modal.querySelector('#modalDescription').textContent = projectData.lang[currentLang].description;
+            modal.querySelector('#modalTags').innerHTML = projectData.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+            modal.querySelector('#modalLink').href = projectData.url;
+            modal.querySelector('[data-lang-key="view-project-btn"]').textContent = langData[currentLang]['view-project-btn'];
+            modal.style.display = 'flex';
+          });
+        });
+      }
+
+      function setupPortfolioFilters() {
+        document.querySelectorAll('.filter-btn').forEach(button => {
+          button.addEventListener('click', () => {
+            document.querySelector('.filter-btn.active').classList.remove('active');
+            button.classList.add('active');
+            displayPortfolio(button.dataset.filter, document.documentElement.lang || 'th');
+          });
+        });
+      }
+
+      function setupScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+      }
+
+      function initializeChart() {
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        radarChart = new Chart(ctx, {
+          type: 'radar',
+          data: {
+            labels: ['Illustrator', 'Photoshop', 'Canva', 'After Effects', 'Premiere Pro', '3D Modeling', 'OBS', 'Vmix'],
+            datasets: [{
+              label: ' ',
+              data: [55, 40, 55, 55, 55, 30, 60, 35],
+              backgroundColor: 'rgba(0, 247, 255, 0.2)',
+              borderColor: '#00f7ff',
+              borderWidth: 2,
+              pointBackgroundColor: '#00f7ff',
+              pointBorderColor: '#040c18'
+            }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: true,
+            scales: { r: { beginAtZero: true, max: 100, ticks: { display: false }, grid: { color: 'rgba(0, 247, 255, 0.1)' }, angleLines: { color: 'rgba(0, 247, 255, 0.2)' }, pointLabels: { color: '#e6f1ff', font: { size: 14 } } } },
+            plugins: { legend: { labels: { color: '#e6f1ff' } } }
+          }
+        });
+      }
+
+      function setupModal() {
+        const modal = document.getElementById('modal');
+        document.querySelector('.modal-close').addEventListener('click', () => modal.style.display = 'none');
+        modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+        
+        document.querySelector('.profile-image').addEventListener('click', () => {
+            modal.querySelector('#modalImage').src = document.querySelector('.profile-image img').src;
+            modal.querySelector('.modal-body').style.display = 'none';
+            modal.querySelector('.modal-footer').style.display = 'none';
+            modal.style.display = 'flex';
+        });
+      }
       
-      const preloader = document.getElementById('preloader');
-      window.addEventListener('load', () => { preloader.classList.add('hidden'); });
+      function setupMenu() {
+        const pages = document.querySelectorAll('.folder-page');
+        document.querySelectorAll('.folder-menu button[data-target]').forEach(button => {
+          button.addEventListener('click', () => {
+            clickSound.currentTime = 0; clickSound.play().catch(()=>{});
+            pages.forEach(page => page.classList.toggle('active', page.id === button.dataset.target));
+            setTimeout(setupScrollAnimations, 500);
+          });
+          button.addEventListener('mouseover', () => {
+            hoverSound.currentTime = 0; hoverSound.play().catch(()=>{});
+          });
+        });
+      }
 
-      switchLanguage('th');
+      // --- INITIALIZATION ---
+      window.addEventListener('load', () => {
+        document.getElementById('preloader').classList.add('hidden');
+      });
+      
+      initializeChart();
+      setupMenu();
+      setupModal();
       setupPortfolioFilters();
+      switchLanguage('th'); // Initial language setup
     });
   </script>
 </body>
